@@ -15,4 +15,10 @@ class LearnListFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_learn_list, container, false)
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        // Put the logik here
+    }
 }

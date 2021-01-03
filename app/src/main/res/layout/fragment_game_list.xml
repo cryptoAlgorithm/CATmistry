@@ -17,12 +17,12 @@
             app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
             app:contentScrim="?attr/play_header_bg"
             app:expandedTitleMarginBottom="28dp"
-            app:expandedTitleMarginStart="72dp"
+            app:expandedTitleMarginStart="20dp"
             android:background="?attr/play_header_bg"
             app:title="@string/play_header"
             app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:statusBarScrim="?attr/colorPrimaryVariant">
+            app:statusBarScrim="?attr/play_header_bg">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/play_header_bg"
+                app:menu="@menu/home_appbar_menu"
                 android:elevation="0dp"
                 app:layout_collapseMode="pin" />
 
@@ -49,13 +50,14 @@
             app:showDividers="middle"
             android:orientation="vertical">
 
+            <!-- Find the right gas -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:foreground="?selectableItemBackground"
                 android:layout_height="80dp">
 
                 <com.catmistry.android.SquareImageView
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:src="@drawable/gas_tests"/>
@@ -66,17 +68,18 @@
                     android:layout_weight="1"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:layout_gravity="center"
-                    android:text="@string/gas_tests" />
+                    android:text="@string/find_gas" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <!-- Retrieve the solids -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:foreground="?selectableItemBackground"
                 android:layout_height="80dp">
 
                 <com.catmistry.android.SquareImageView
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:src="@drawable/separation_methods"/>
@@ -87,17 +90,18 @@
                     android:layout_weight="1"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:layout_gravity="center"
-                    android:text="@string/separation_methods" />
+                    android:text="@string/retrieve_solid" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <!-- Adjust the pH -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:foreground="?selectableItemBackground"
                 android:layout_height="80dp">
 
                 <com.catmistry.android.SquareImageView
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:src="@drawable/ph_and_indicators"/>
@@ -108,17 +112,18 @@
                     android:layout_weight="1"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:layout_gravity="center"
-                    android:text="@string/ph_indicators" />
+                    android:text="@string/adj_ph" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <!-- Identify the elements -->
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:foreground="?selectableItemBackground"
                 android:layout_height="80dp">
 
                 <com.catmistry.android.SquareImageView
-                    android:layout_width="70dp"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:src="@drawable/periodic_table"/>
@@ -129,7 +134,7 @@
                     android:layout_weight="1"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     android:layout_gravity="center"
-                    android:text="@string/periodic_table" />
+                    android:text="@string/identify_elem" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
