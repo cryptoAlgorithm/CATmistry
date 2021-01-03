@@ -8,27 +8,30 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
+        android:background="?attr/play_header_bg"
         android:layout_height="128dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:expandedTitleMarginStart="72dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:contentScrim="?attr/colorPrimary"
-            app:statusBarScrim="?attr/colorPrimaryVariant"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
+            app:contentScrim="?attr/play_header_bg"
             app:expandedTitleMarginBottom="28dp"
+            app:expandedTitleMarginStart="72dp"
+            android:background="?attr/play_header_bg"
+            app:title="@string/play_header"
             app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
-            app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="?attr/colorPrimaryVariant">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="@string/play_header"
+                android:background="?attr/play_header_bg"
                 android:elevation="0dp"
-                app:layout_collapseMode="pin"
-                style="@style/Widget.MaterialComponents.Toolbar.Primary" />
+                app:layout_collapseMode="pin" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -39,11 +42,98 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/large_text" />
+            app:divider="@drawable/home_list_divider"
+            app:showDividers="middle"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:foreground="?selectableItemBackground"
+                android:layout_height="80dp">
+
+                <com.catmistry.android.SquareImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/gas_tests"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_gravity="center"
+                    android:text="@string/gas_tests" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:foreground="?selectableItemBackground"
+                android:layout_height="80dp">
+
+                <com.catmistry.android.SquareImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/separation_methods"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_gravity="center"
+                    android:text="@string/separation_methods" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:foreground="?selectableItemBackground"
+                android:layout_height="80dp">
+
+                <com.catmistry.android.SquareImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ph_and_indicators"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_gravity="center"
+                    android:text="@string/ph_indicators" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:foreground="?selectableItemBackground"
+                android:layout_height="80dp">
+
+                <com.catmistry.android.SquareImageView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/periodic_table"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_gravity="center"
+                    android:text="@string/periodic_table" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>
 
