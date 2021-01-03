@@ -12,5 +12,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <!-- Header colors -->
+        <item name="learn_header_bg">#f2d670</item>
+        <item name="play_header_bg">#68c6f2</item>
+        <!-- Custom font -->
+        <item name="fontFamily">@font/product_sans</item>
+        <item name="android:fontFamily">@font/product_sans</item>
     </style>
 </resources>

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewpager.adapter = BottomTabAdapter(this, 3)
+        viewpager.adapter = BottomTabAdapter(this, 2)
         viewpager.offscreenPageLimit = 2
 
         // Change callback to update bottom navigation's selected item
