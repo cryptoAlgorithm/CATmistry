@@ -3,6 +3,8 @@ package com.catmistry.android
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,6 +37,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set app theme based on preferences
+        when (PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(
+            "theme",
+            "auto"
+        )) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Light theme
+            else -> { // Follow system theme/unset
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                    .edit()
+                    .putString("theme", "auto")
+                    .apply() // Prevent unset state
+            }
+        }
+
         setContentView(R.layout.activity_main)
 
         viewpager.adapter = BottomTabAdapter(this, 2)

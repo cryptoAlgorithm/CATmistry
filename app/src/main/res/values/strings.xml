@@ -13,4 +13,8 @@
     <string name="retrieve_solid">Retrieve the Solids</string>
     <string name="adj_ph">Adjust the pH</string>
     <string name="identify_elem">Identify the Elements</string>
+
+    <!-- Settings page -->
+    <string name="settings_header">Settings</string>
+    <string name="appearance_header">App Appearance</string>
 </resources>

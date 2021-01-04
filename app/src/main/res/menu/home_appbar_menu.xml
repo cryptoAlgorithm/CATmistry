@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_learn"
+        android:id="@+id/appbar_settings"
         android:icon="@drawable/ic_round_settings_24"
         app:iconTint="@color/material_on_background_emphasis_high_type"
         android:title="@string/appbar_settings"
