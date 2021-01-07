@@ -7,7 +7,13 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.FirebaseApp
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
+import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,6 +61,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
+
+        // Init Firebase, first things first
+        FirebaseApp.initializeApp(applicationContext)
+
+        try {
+            Firebase.database.setPersistenceEnabled(true) // Enable offline capabilities
+        }
+        catch (e: Exception) {}
+
+        // Init Analytics
+        Firebase.analytics
 
         viewpager.adapter = BottomTabAdapter(this, 2)
         viewpager.offscreenPageLimit = 2

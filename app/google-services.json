@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "517918508656",
+    "firebase_url": "https://catmistry-android-default-rtdb.firebaseio.com",
+    "project_id": "catmistry-android",
+    "storage_bucket": "catmistry-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517918508656:android:ed2595fed299984440d6b5",
+        "android_client_info": {
+          "package_name": "com.catmistry.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517918508656-i9g96farbi7medvt4muimup4bv4ktgqa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.catmistry.android",
+            "certificate_hash": "4774321b04cb59e1c11cdfc5fada464e1db6023b"
+          }
+        },
+        {
+          "client_id": "517918508656-etvad5hp4iu556abrvt6higjegck8899.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5NIkH4n-5_zyST0vwYzc2hG_RjUAw0Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517918508656-etvad5hp4iu556abrvt6higjegck8899.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

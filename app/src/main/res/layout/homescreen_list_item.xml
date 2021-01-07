@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat android:layout_width="match_parent"
+    android:id="@+id/gasTests"
+    android:foreground="?selectableItemBackground"
+    android:layout_height="80dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.catmistry.android.SquareImageView
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:id="@+id/listIcon"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:layout_gravity="center"
+        android:id="@+id/listTitle"
+        android:text="@string/gas_tests" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
