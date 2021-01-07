@@ -16,14 +16,15 @@ class LearnQuizActivity : AppCompatActivity() {
         // Start konfetti
         konfettiView.build()
             .addColors(Color.rgb(237, 103, 83), Color.rgb(97, 198, 164),
-                Color.rgb(245, 205, 165), Color.rgb(86, 192, 213), Color.rgb(150, 100, 132))
+                Color.rgb(245, 205, 165), Color.rgb(86, 192, 213),
+                Color.rgb(150, 100, 132))
             .setDirection(180.0, 0.0)
-            .setSpeed(0.5f, 2f)
+            .setSpeed(0.8f, 1.2f)
             .setFadeOutEnabled(true)
             .setTimeToLive(2000L)
             .addShapes(Shape.Square, Shape.Circle)
-            .addSizes(Size(12))
+            .addSizes(Size(10))
             .setPosition(-50f, konfettiView.width + 10000f, -50f, -50f)
-            .streamFor(300, StreamEmitter.INDEFINITE)
+            .streamFor(200, StreamEmitter.INDEFINITE)
     }
 }
