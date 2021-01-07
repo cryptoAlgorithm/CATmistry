@@ -16,7 +16,7 @@ android {
         minSdkVersion 18
         targetSdkVersion 30
         versionCode 10
-        versionName "0.1.0"
+        versionName "0.2.0"
 
         multiDexEnabled true // Enable MultiDex
 
@@ -68,4 +68,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-perf-ktx'      // Firebase Performance SDK
     implementation 'com.google.firebase:firebase-storage-ktx'   // Firebase Storage SDK
     implementation 'com.google.firebase:firebase-crashlytics-ktx'      // Firebase Crashlytics SDK
+
+    // Konfetti (This is not a spelling error)
+    implementation 'nl.dionsegijn:konfetti:1.2.5'
 }

@@ -95,6 +95,7 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
 
     override fun itemClicked(itemID: Int) {
         Toast.makeText(context, itemID.toString(), Toast.LENGTH_SHORT).show()
+        startActivity(Intent(requireActivity(), LearnQuizActivity::class.java))
     }
 
     // Extension functions

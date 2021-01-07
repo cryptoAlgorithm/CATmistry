@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CATmistry">
+        <activity android:name=".LearnQuizActivity"></activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/settings_header" />
