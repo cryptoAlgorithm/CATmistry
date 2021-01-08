@@ -14,6 +14,14 @@
     <string name="adj_ph">Adjust the pH</string>
     <string name="identify_elem">Identify the Elements</string>
 
+    <!-- Learn quiz page -->
+    <string name="gameTimer_desc">Remaining time for question:</string>
+    <string name="opt_err">Could not retrieve option</string>
+    <string name="end_quiz_title">End Quiz?</string>
+    <string name="end_quiz_body">By ending the quiz, all progress will be lost</string>
+    <string name="end_quiz_ok">End Quiz</string>
+    <string name="end_quiz_no">Continue Quiz</string>
+
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>

@@ -3,11 +3,9 @@ package com.catmistry.android
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -94,8 +92,10 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
     }
 
     override fun itemClicked(itemID: Int) {
-        Toast.makeText(context, itemID.toString(), Toast.LENGTH_SHORT).show()
-        startActivity(Intent(requireActivity(), LearnQuizActivity::class.java))
+        Log.e("Quiz topic", itemID.toString())
+        val quizIntent = Intent(requireActivity(), LearnQuizActivity::class.java)
+        quizIntent.putExtra("quizTopic", itemID.toString())
+        startActivity(quizIntent)
     }
 
     // Extension functions
