@@ -23,10 +23,17 @@
     <string name="end_quiz_no">Continue Quiz</string>
     <!-- Correct/wrong texts -->
     <string name="quiz_result_correct">Well done! You got it right!</string>
-    <string name="quiz_result_wrong">Oh no! You answer was wrong, but don\'t worry! There are %1$s questions left in this quiz.</string>
+    <string name="quiz_remaining_singular">is 1 question</string>
+    <string name="quiz_remaining_plural">are %1$s questions</string>
+    <string name="quiz_result_wrong">Oh no! You answer was wrong, but don\'t worry! There %1$s left in this quiz.</string>
     <string name="correct_ans_wrong">Correct answer: %1$s\nTry harder next time!</string>
     <string name="correct_ans_correct">There are %1$s questions remaining. Keep up the good work!</string>
     <string name="next_qn_btn">Next question</string>
+    <!-- End of quiz strings -->
+    <string name="endOfQuiz">The quiz has come to an end, and you got %1$s questions correct!</string>
+    <string name="quiz_pass">You\'ve passed the quiz with flying colors! Excellent! You can now proceed to the next activity!</string>
+    <string name="quiz_fail">Unfortunately, you\'ve failed the quiz. Read up on the learning topics and reattempt the quiz! You can do it!</string>
+    <string name="quiz_exit_btn">Exit</string>
 
     <!-- Settings page -->
     <string name="settings_header">Settings</string>

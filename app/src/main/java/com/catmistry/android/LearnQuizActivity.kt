@@ -21,12 +21,14 @@ import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 
 class LearnQuizActivity : AppCompatActivity() {
-    var continueTimer = false
-    var timeLeft: Double? = null
-    var currentTimerThread: Thread? = null
+    private var continueTimer = false
+    private var timeLeft: Double? = null
+    private var currentTimerThread: Thread? = null
+    private var numCorrectAns: Int = 0
+    private var reallyExit = true
 
     val questionsArray: ArrayList<LearnQns?> = ArrayList() // Array to store all questions data
-
+    val questionsSeq: ArrayList<Int> = ArrayList() // Sequence of questions
 
     private fun startTimer(totalTime: Double) {
         if (timeLeft == null) timeLeft = totalTime
@@ -43,7 +45,7 @@ class LearnQuizActivity : AppCompatActivity() {
                     runOnUiThread {
                         // Stuff that updates the UI
                         // Android how I hate you
-                        checkAns(5, questionsArray[0]?.correctAnswer!!) // This will never be right
+                        checkAns(5, questionsArray[questionsSeq[0]]?.correctAnswer!!) // This will never be right
                     }
                     break
                 }
@@ -69,13 +71,40 @@ class LearnQuizActivity : AppCompatActivity() {
         timeLeft = null
 
         // Delete shown question (or fail silently)
-        questionsArray.removeFirstOrNull()
+        questionsSeq.removeFirstOrNull()
 
-        if (questionsArray.isEmpty()) {
-            Toast.makeText(this@LearnQuizActivity, "Quiz complete", Toast.LENGTH_SHORT).show()
+        if (questionsSeq.isEmpty()) {
+            resultHeader.text = getString(R.string.endOfQuiz, numCorrectAns.toString())
+            resultSubtitle.text = if (numCorrectAns >= 5) getString(R.string.quiz_pass)
+            else getString(R.string.quiz_fail)
+            if (numCorrectAns >= 5) resultImg.setImageResource(R.drawable.check)
+            else resultImg.setImageResource(R.drawable.close)
+            reallyExit = true
+
+            BottomSheetBehavior.from(resultsSheet).state = BottomSheetBehavior.STATE_EXPANDED
+
+            /*BottomSheetBehavior.from(resultsSheet).addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                override fun onStateChanged(bottomSheet: View, newState: Int) {
+                    if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                        onBackPressed()
+                        Log.e("Exited from bottom shit", "Bottom sheet")
+                    }
+                }
+
+                override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                    // Do nothing
+                }
+            })*/
+
+            sheetEndButton.text = getString(R.string.quiz_exit_btn)
+            sheetEndButton.setOnClickListener {
+                onBackPressed()
+                Log.e("Exited from button", "Press")
+            }
+
             return
         }
-        updateUI(questionsArray[0])
+        updateUI(questionsArray[questionsSeq[0]])
 
         // Enable buttons once again
         optOne.isEnabled   = true
@@ -91,10 +120,20 @@ class LearnQuizActivity : AppCompatActivity() {
         // Pause the timer
         continueTimer = false
 
+        // Disable the option buttons to prevent clicking again
+        optOne.isEnabled   = false
+        optTwo.isEnabled   = false
+        optThree.isEnabled = false
+        optFour.isEnabled  = false
+
+        val questionsRemaining = questionsSeq.size - 1
+        val questionsLeftText = if (questionsRemaining == 1) getString(R.string.quiz_remaining_singular)
+        else getString(R.string.quiz_remaining_plural, questionsRemaining.toString())
+
         if (enteredAns == correctAns) {
             resultImg.setImageResource(R.drawable.check)
             resultHeader.text = getString(R.string.quiz_result_correct)
-            resultSubtitle.text = getString(R.string.correct_ans_correct, (questionsArray.size - 1).toString())
+            resultSubtitle.text = getString(R.string.correct_ans_correct, questionsLeftText)
             konfettiView.build()
                     .addColors(Color.rgb(237, 103, 83), Color.rgb(97, 198, 164),
                             Color.rgb(245, 205, 165), Color.rgb(86, 192, 213),
@@ -107,20 +146,17 @@ class LearnQuizActivity : AppCompatActivity() {
                     .addSizes(Size(10))
                     .setPosition(-50f, konfettiView.width + 10000f, -50f, 0f)
                     .streamFor(200, StreamEmitter.INDEFINITE)
+
+            // Add a correct answer
+            numCorrectAns++
         }
         else {
             resultImg.setImageResource(R.drawable.close)
-            resultHeader.text = getString(R.string.quiz_result_wrong, (questionsArray.size - 1).toString())
-            resultSubtitle.text = getString(R.string.correct_ans_wrong, questionsArray[0]?.options?.get(correctAns - 1))
+            resultHeader.text = getString(R.string.quiz_result_wrong, questionsLeftText)
+            resultSubtitle.text = getString(R.string.correct_ans_wrong, questionsArray[questionsSeq[0]]?.options?.get(correctAns - 1))
         }
 
         BottomSheetBehavior.from(resultsSheet).state = BottomSheetBehavior.STATE_EXPANDED
-
-        // Disable the option buttons to prevent clicking again
-        optOne.isEnabled   = false
-        optTwo.isEnabled   = false
-        optThree.isEnabled = false
-        optFour.isEnabled  = false
     }
 
     private fun updateUI(qnData: LearnQns?) {
@@ -155,6 +191,12 @@ class LearnQuizActivity : AppCompatActivity() {
         val prevState = continueTimer
 
         continueTimer = false // Pause timer if running
+
+        if (reallyExit) {
+            super.onBackPressed()
+            finish()
+            return
+        }
 
         MaterialAlertDialogBuilder(this)
             .setTitle(resources.getString(R.string.end_quiz_title))
@@ -197,6 +239,15 @@ class LearnQuizActivity : AppCompatActivity() {
                     val listData = it.getValue<LearnQns>()
                     questionsArray.add(listData)
                 }
+                repeat(11) {
+                    var selectedIndex: Int
+                    do {
+                        selectedIndex = (0 until questionsArray.size).random()
+                    } while (questionsSeq.contains(selectedIndex))
+
+                    questionsSeq.add(selectedIndex)
+                }
+                reallyExit = false
                 showNextQn()
             }
 
@@ -219,13 +270,13 @@ class LearnQuizActivity : AppCompatActivity() {
 
         sheetEndButton.setOnClickListener {
             bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
-            showNextQn()
         }
 
         bottomSheet.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    showNextQn()
+                    if (!reallyExit) showNextQn()
+                    else onBackPressed()
                 }
             }
 
