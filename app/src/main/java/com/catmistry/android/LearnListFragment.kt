@@ -90,9 +90,6 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
                 else -> false
             }
         }
-        topAppBar.setNavigationOnClickListener {
-            Log.e("Selected item", "Home")
-        }
     }
 
     override fun itemClicked(itemID: Int) {
