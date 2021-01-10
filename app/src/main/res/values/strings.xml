@@ -27,7 +27,7 @@
     <string name="quiz_remaining_plural">are %1$s questions</string>
     <string name="quiz_result_wrong">Oh no! You answer was wrong, but don\'t worry! There %1$s left in this quiz.</string>
     <string name="correct_ans_wrong">Correct answer: %1$s\nTry harder next time!</string>
-    <string name="correct_ans_correct">There are %1$s questions remaining. Keep up the good work!</string>
+    <string name="correct_ans_correct">There %1$s remaining. Keep up the good work!</string>
     <string name="next_qn_btn">Next question</string>
     <!-- End of quiz strings -->
     <string name="endOfQuiz">The quiz has come to an end, and you got %1$s questions correct!</string>

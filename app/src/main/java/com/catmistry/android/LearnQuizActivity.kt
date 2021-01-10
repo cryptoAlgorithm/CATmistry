@@ -63,15 +63,14 @@ class LearnQuizActivity : AppCompatActivity() {
     }
 
     private fun showNextQn() {
+        reallyExit = false
+
         // Gracefully stop konfetti
         konfettiView.stopGracefully()
 
         // Interrupt timer
         currentTimerThread?.interrupt()
         timeLeft = null
-
-        // Delete shown question (or fail silently)
-        questionsSeq.removeFirstOrNull()
 
         if (questionsSeq.isEmpty()) {
             resultHeader.text = getString(R.string.endOfQuiz, numCorrectAns.toString())
@@ -104,6 +103,7 @@ class LearnQuizActivity : AppCompatActivity() {
 
             return
         }
+
         updateUI(questionsArray[questionsSeq[0]])
 
         // Enable buttons once again
@@ -157,6 +157,9 @@ class LearnQuizActivity : AppCompatActivity() {
         }
 
         BottomSheetBehavior.from(resultsSheet).state = BottomSheetBehavior.STATE_EXPANDED
+
+        // Delete shown question (or fail silently)
+        questionsSeq.removeFirstOrNull()
     }
 
     private fun updateUI(qnData: LearnQns?) {
@@ -228,18 +231,14 @@ class LearnQuizActivity : AppCompatActivity() {
 
         bottomSheet.state = BottomSheetBehavior.STATE_HIDDEN
 
-        // Start konfetti
-        /*  */
-
-        Toast.makeText(this, intent.extras?.getString("quizTopic"), Toast.LENGTH_SHORT).show()
-
         val qnDataListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach {
                     val listData = it.getValue<LearnQns>()
+                    Log.e("ListData", listData.toString())
                     questionsArray.add(listData)
                 }
-                repeat(11) {
+                repeat(10) {
                     var selectedIndex: Int
                     do {
                         selectedIndex = (0 until questionsArray.size).random()
@@ -247,7 +246,6 @@ class LearnQuizActivity : AppCompatActivity() {
 
                     questionsSeq.add(selectedIndex)
                 }
-                reallyExit = false
                 showNextQn()
             }
 

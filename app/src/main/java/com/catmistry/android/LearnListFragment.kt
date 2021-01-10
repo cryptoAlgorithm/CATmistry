@@ -58,6 +58,7 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
 
                 runOnUiThread {
                     recyclerView.adapter?.notifyDataSetChanged()
+                    recyclerView.scheduleLayoutAnimation()
                 }
             }
 
@@ -88,6 +89,9 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
                 }
                 else -> false
             }
+        }
+        topAppBar.setNavigationOnClickListener {
+            Log.e("Selected item", "Home")
         }
     }
 

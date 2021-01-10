@@ -65,10 +65,10 @@ class MainActivity : AppCompatActivity() {
         // Init Firebase, first things first
         FirebaseApp.initializeApp(applicationContext)
 
-        try {
+        /*try {
             Firebase.database.setPersistenceEnabled(true) // Enable offline capabilities
         }
-        catch (e: Exception) {}
+        catch (e: Exception) {}*/
 
         // Init Analytics
         Firebase.analytics
