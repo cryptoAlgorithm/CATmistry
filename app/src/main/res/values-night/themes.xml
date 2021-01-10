@@ -28,6 +28,6 @@
         <item name="quizFourBg">#587359</item>
         <item name="quizQnBg">#607C79</item>
         <!-- Card background color -->
-        <item name="cardBackgroundColor">#333333</item>
+        <item name="cardBackgroundColor">#222222</item>
     </style>
 </resources>

@@ -26,6 +26,7 @@
     <string name="quiz_result_wrong">Oh no! You answer was wrong, but don\'t worry! There are %1$s questions left in this quiz.</string>
     <string name="correct_ans_wrong">Correct answer: %1$s\nTry harder next time!</string>
     <string name="correct_ans_correct">There are %1$s questions remaining. Keep up the good work!</string>
+    <string name="next_qn_btn">Next question</string>
 
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
