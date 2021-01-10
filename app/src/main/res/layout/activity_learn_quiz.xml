@@ -12,77 +12,156 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
+        android:id="@+id/endQuizButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|left"
+        android:layout_gravity="top|start"
         app:fabSize="mini"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="26dp"
         android:contentDescription="@string/end_quiz_ok"
         app:srcCompat="@drawable/ic_round_close_24"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:baselineAligned="false"
-        android:layout_height="match_parent">
+        android:orientation="vertical"
+        app:layout_anchor="@+id/konfettiView"
+        app:layout_anchorGravity="center">
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progressBar"
-            app:trackCornerRadius="4dp"
-            android:progress="100"
-            android:contentDescription="@string/gameTimer_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/questionText"
-            android:textAlignment="center"
-            android:textAppearance="?attr/textAppearanceHeadline3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="100" />
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:trackThickness="10dp"
+            android:contentDescription="@string/gameTimer_desc"
+            android:progress="100"
+            app:trackCornerRadius="10dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="7dp"
+            android:layout_margin="25dp"
+            android:layout_weight="100"
+            app:cardBackgroundColor="?attr/quizQnBg"
+            android:gravity="center">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/questionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"
+                    android:textAppearance="?attr/textAppearanceHeadline5" />
+
+            </androidx.core.widget.NestedScrollView>
+
+        </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
             android:layout_gravity="bottom"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
+            android:baselineAligned="false"
             android:gravity="bottom"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/optOne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp" />
+                android:backgroundTint="?attr/quizOneBg" />
 
             <Button
                 android:id="@+id/optTwo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp" />
+                android:backgroundTint="?attr/quizTwoBg" />
 
             <Button
                 android:id="@+id/optThree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp" />
+                android:backgroundTint="?attr/quizThreeBg" />
 
             <Button
                 android:id="@+id/optFour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp" />
+                android:backgroundTint="?attr/quizFourBg" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <LinearLayout
+        android:id="@+id/resultsSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="200dp"
+        android:background="?attr/cardBackgroundColor"
+        android:elevation="10dp"
+        android:scrollbars="none"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <com.catmistry.android.SquareImageView
+                    android:id="@+id/resultImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginEnd="50dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:src="@drawable/check"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/resultHeader"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_width="match_parent"
+                    android:layout_margin="10dp"
+                    android:textAlignment="center"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/chosenOptions"
+                    android:layout_margin="10dp"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

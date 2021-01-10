@@ -2,23 +2,32 @@
     <!-- Base application theme. -->
     <style name="Theme.CATmistry" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#1e88e5</item>
+        <item name="colorPrimary">#1A78CA</item>
         <item name="colorPrimaryVariant">#005cb2</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="appBarBg">#121212</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?android:colorBackground</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Navigation bar color -->
         <item name="android:navigationBarColor" tools:targetApi="21">?android:colorBackground</item>
         <!-- Customize your theme here. -->
         <!-- Header colors -->
-        <item name="learn_header_bg">#f2d670</item>
-        <item name="play_header_bg">#68c6f2</item>
+        <item name="learn_header_bg">#796b38</item>
+        <item name="play_header_bg">#346379</item>
         <!-- Custom font -->
         <item name="fontFamily">@font/product_sans</item>
         <item name="android:fontFamily">@font/product_sans</item>
+        <!-- Question button backgrounds -->
+        <item name="quizOneBg">#467377</item>
+        <item name="quizTwoBg">#7E744B</item>
+        <item name="quizThreeBg">#7D7263</item>
+        <item name="quizFourBg">#587359</item>
+        <item name="quizQnBg">#607C79</item>
+        <!-- Card background color -->
+        <item name="cardBackgroundColor">#333333</item>
     </style>
 </resources>

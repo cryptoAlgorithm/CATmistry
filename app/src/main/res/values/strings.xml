@@ -21,8 +21,21 @@
     <string name="end_quiz_body">By ending the quiz, all progress will be lost</string>
     <string name="end_quiz_ok">End Quiz</string>
     <string name="end_quiz_no">Continue Quiz</string>
+    <!-- Correct/wrong texts -->
+    <string name="quiz_result_correct">Well done! You got it right!</string>
+    <string name="quiz_result_wrong">Oh no! You answer was wrong, but don\'t worry! There are %1$s questions left in this quiz.</string>
+    <string name="correct_ans_wrong">Correct answer: %1$s\nTry harder next time!</string>
+    <string name="correct_ans_correct">There are %1$s questions remaining. Keep up the good work!</string>
 
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>
+    <string name="credits_header">Credits</string>
+    <string name="credits_team">Programmed by Vincent Kwok\n
+With graphics and design by The CATmistry Team:\n
+Neo Hao Jun\n
+Wang Zerui\n
+Chanel Tab\n
+Ryu Hwina
+    </string>
 </resources>

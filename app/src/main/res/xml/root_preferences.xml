@@ -14,4 +14,8 @@
             android:icon="@drawable/ic_round_theme_24" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/credits_header">
+        <Preference app:title="@string/credits_team" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

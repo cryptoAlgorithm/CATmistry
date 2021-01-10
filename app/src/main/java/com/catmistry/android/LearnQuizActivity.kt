@@ -7,7 +7,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,28 +24,77 @@ import nl.dionsegijn.konfetti.models.Size
 
 class LearnQuizActivity : AppCompatActivity() {
     var continueTimer = false
-    private fun startTimer(totalTime: Double = 20000.0) {
-        var timeRemaining = totalTime // Time in ms left for question
+    var timeLeft: Double? = null
+    var currentTimerThread: Thread? = null
 
-        val mainHandler = Handler(Looper.getMainLooper())
+    val questionsArray: ArrayList<LearnQns?> = ArrayList() // Array to store all questions data
 
-        mainHandler.post(object : Runnable {
-            override fun run() {
-                if (timeRemaining >= 0 && continueTimer) mainHandler.postDelayed(this, 50)
-                else Toast.makeText(this@LearnQuizActivity, "ayo", Toast.LENGTH_SHORT).show()
-                val newProg = ((timeRemaining / totalTime) * 100.0).toInt()
+
+    private fun startTimer(totalTime: Double) {
+        if (timeLeft == null) timeLeft = totalTime
+
+        val runnable = Runnable {
+            while (continueTimer) {
+                val newProg = ((timeLeft!! / totalTime) * 100.0).toInt()
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     progressBar.setProgress(newProg, true)
                 }
                 else progressBar.progress = newProg
-                timeRemaining -= 50
+
+                timeLeft = timeLeft!! - 50
+
+                Thread.sleep(50)
             }
-        })
+
+            Toast.makeText(this@LearnQuizActivity, "ayo", Toast.LENGTH_SHORT).show()
+            timeLeft = null
+            continueTimer = false
+        }
+        currentTimerThread = Thread(runnable)
+        currentTimerThread?.start()
+    }
+
+    private fun showNextQn() {
+        // Delete shown question (or fail silently)
+        questionsArray.removeFirstOrNull()
+
+        if (questionsArray.isEmpty()) {
+            Toast.makeText(this@LearnQuizActivity, "Quiz complete", Toast.LENGTH_SHORT).show()
+            return
+        }
+        continueTimer = true
+        startTimer(10000.0)
+        updateUI(questionsArray[0])
+
+        // Enable buttons once again
+        optOne.isEnabled   = true
+        optTwo.isEnabled   = true
+        optThree.isEnabled = true
+        optFour.isEnabled  = true
     }
 
     private fun checkAns(enteredAns: Int, correctAns: Int) {
-        if (enteredAns == correctAns) Toast.makeText(this@LearnQuizActivity, "Korrect", Toast.LENGTH_SHORT).show()
-        else Toast.makeText(this@LearnQuizActivity, "Wrong", Toast.LENGTH_SHORT).show()
+        // Pause the timer
+        continueTimer = false
+        currentTimerThread?.interrupt()
+        timeLeft = null
+
+        if (enteredAns == correctAns) {
+            resultImg.setImageResource(R.drawable.check)
+            resultHeader.text = getString(R.string.quiz_result_correct)
+        }
+        else {
+            resultImg.setImageResource(R.drawable.close)
+            resultHeader.text = getString(R.string.quiz_result_wrong, (questionsArray.size - 1).toString())
+        }
+
+        BottomSheetBehavior.from(resultsSheet).state = BottomSheetBehavior.STATE_EXPANDED
+
+        // Disable the option buttons to prevent clicking again
+        optOne.isEnabled   = false
+        optTwo.isEnabled   = false
+        optThree.isEnabled = false
+        optFour.isEnabled  = false
     }
 
     private fun updateUI(qnData: LearnQns?) {
@@ -70,23 +121,32 @@ class LearnQuizActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        continueTimer = false // Pause timer if running
         MaterialAlertDialogBuilder(this)
-                .setTitle(resources.getString(R.string.end_quiz_title))
-                .setMessage(resources.getString(R.string.end_quiz_body))
-                .setNegativeButton(resources.getString(R.string.end_quiz_ok)) { _, _ ->
-                    // Respond to negative button press
-                    super.onBackPressed()
-                }
-                .setPositiveButton(resources.getString(R.string.end_quiz_no)) { _, _ ->
-                    // Respond to positive button press
-                    // Do nothing
-                }
-                .show()
+            .setTitle(resources.getString(R.string.end_quiz_title))
+            .setMessage(resources.getString(R.string.end_quiz_body))
+            .setNegativeButton(resources.getString(R.string.end_quiz_ok)) { _, _ ->
+                // Respond to negative button press
+                super.onBackPressed()
+                finish()
+            }
+            .setPositiveButton(resources.getString(R.string.end_quiz_no)) { _, _ ->
+                // Respond to positive button press
+                continueTimer = true // Resume timer
+                startTimer(10000.0)
+            }
+            .setOnCancelListener {
+                continueTimer = true // Resume timer
+                startTimer(10000.0)
+            }
+            .show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_learn_quiz)
+
+        BottomSheetBehavior.from(resultsSheet).state = BottomSheetBehavior.STATE_HIDDEN
 
         // Start konfetti
         /* konfettiView.build()
@@ -104,8 +164,6 @@ class LearnQuizActivity : AppCompatActivity() {
 
         Toast.makeText(this, intent.extras?.getString("quizTopic"), Toast.LENGTH_SHORT).show()
 
-        val questionsArray: ArrayList<LearnQns?> = ArrayList()
-
         val qnDataListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach {
@@ -113,10 +171,7 @@ class LearnQuizActivity : AppCompatActivity() {
                     questionsArray.add(listData)
                     Log.e("List data", listData.toString())
                 }
-
-                updateUI(questionsArray[0])
-                continueTimer = true
-                startTimer(10000.0)
+                showNextQn()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -127,8 +182,25 @@ class LearnQuizActivity : AppCompatActivity() {
             }
         }
 
-        Firebase.database.reference.child("learnQns")
+        val qnRef = Firebase.database.reference.child("learnQns")
                 .child(intent.extras?.getString("quizTopic").toString())
-                .addListenerForSingleValueEvent(qnDataListener)
+        qnRef.keepSynced(true)
+        qnRef.addListenerForSingleValueEvent(qnDataListener)
+
+        endQuizButton.setOnClickListener {
+            onBackPressed()
+        }
+
+        BottomSheetBehavior.from(resultsSheet).addBottomSheetCallback(object :BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                    showNextQn()
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+                // Do nothing
+            }
+        })
     }
 }

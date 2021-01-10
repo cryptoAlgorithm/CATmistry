@@ -4,13 +4,14 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">#42a5f5</item>
         <item name="colorPrimaryVariant">#0077c2</item>
+        <item name="appBarBg">?colorPrimary</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?android:colorBackground</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
         <!-- Navigation bar color -->
         <item name="android:navigationBarColor" tools:targetApi="21">?android:colorBackground</item>
         <!-- Customize your theme here. -->
@@ -20,5 +21,13 @@
         <!-- Custom font -->
         <item name="fontFamily">@font/product_sans</item>
         <item name="android:fontFamily">@font/product_sans</item>
+        <!-- Question button backgrounds -->
+        <item name="quizOneBg">#8ce6ee</item>
+        <item name="quizTwoBg">#fce996</item>
+        <item name="quizThreeBg">#fbe4c6</item>
+        <item name="quizFourBg">#b0e6b2</item>
+        <item name="quizQnBg">#C1F8F2</item>
+        <!-- Card background color -->
+        <item name="cardBackgroundColor">#eeeeee</item>
     </style>
 </resources>

@@ -2,4 +2,10 @@
 <resources>
     <attr name="learn_header_bg" format="color" />
     <attr name="play_header_bg" format="color" />
+    <attr name="appBarBg" format="color" />
+    <attr name="quizOneBg" format="color" />
+    <attr name="quizTwoBg" format="color" />
+    <attr name="quizThreeBg" format="color" />
+    <attr name="quizFourBg" format="color" />
+    <attr name="quizQnBg" format="color" />
 </resources>
