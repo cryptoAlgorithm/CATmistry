@@ -29,8 +29,18 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            // Other parameters
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
+
+            minifyEnabled true
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            // Other parameters
+            pseudoLocalesEnabled false
+            zipAlignEnabled true
         }
     }
     compileOptions {
