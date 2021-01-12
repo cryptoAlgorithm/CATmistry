@@ -35,6 +35,8 @@
     <string name="quiz_fail">Unfortunately, you\'ve failed the quiz. Read up on the learning topics and reattempt the quiz! You can do it!</string>
     <string name="quiz_exit_btn">Exit</string>
 
+    <!-- Homescreen list viewer -->
+
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>

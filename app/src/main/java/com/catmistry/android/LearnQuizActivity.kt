@@ -47,6 +47,8 @@ class LearnQuizActivity : AppCompatActivity() {
                         // Android how I hate you
                         checkAns(5, questionsArray[questionsSeq[0]]?.correctAnswer!!) // This will never be right
                     }
+
+                    timeLeft = null
                     break
                 }
 
@@ -55,7 +57,6 @@ class LearnQuizActivity : AppCompatActivity() {
                 Thread.sleep(50)
             }
 
-            timeLeft = null
             continueTimer = false
         }
         currentTimerThread = Thread(runnable)
