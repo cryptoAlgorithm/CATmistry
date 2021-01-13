@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/learn_header_bg"
+                app:navigationIcon="@drawable/ic_round_arrow_back_24"
                 android:elevation="0dp"
                 app:layout_collapseMode="pin" />
 

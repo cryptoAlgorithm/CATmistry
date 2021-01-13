@@ -27,13 +27,13 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
         return inflater.inflate(R.layout.fragment_learn_list, container, false)
     }
 
+    val learningTopics: ArrayList<LearnTopics?> = ArrayList()
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         // Put the logik here
         val database = Firebase.database.reference
-
-        val learningTopics: ArrayList<LearnTopics?> = ArrayList()
 
         val learnTopicListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -94,8 +94,12 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
 
     override fun itemClicked(itemID: Int) {
         Log.e("Quiz topic", itemID.toString())
-        val quizIntent = Intent(requireActivity(), LearnQuizActivity::class.java)
+        /*val quizIntent = Intent(requireActivity(), LearnQuizActivity::class.java)
         quizIntent.putExtra("quizTopic", itemID.toString())
+        startActivity(quizIntent)*/
+        val quizIntent = Intent(requireActivity(), HomeLearnListViewer::class.java)
+        quizIntent.putExtra("quizHeader", learningTopics[itemID]?.title)
+        quizIntent.putExtra("quizIndex", itemID.toString())
         startActivity(quizIntent)
     }
 
