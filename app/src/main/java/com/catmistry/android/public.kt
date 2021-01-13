@@ -1,8 +1,7 @@
 package com.catmistry.android
 
-import androidx.fragment.app.Fragment
-
 // Data classes
+// I actually put sensible defaults
 data class LearnQns (
     var correctAnswer: Int? = 0,
     var question: String? = "",
@@ -12,6 +11,10 @@ data class LearnTopics (
     var icon: String? = "gas_tests",
     var title: String? = "Gas Tests",
     var unlockPoints: Int? = 0
+)
+data class SubTopicContent (
+    var content: String? = "Failed to retrieve content",
+    var appBarTitle: String? = "Gas Tests"
 )
 
 // Interfaces

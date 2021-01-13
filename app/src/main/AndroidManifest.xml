@@ -9,7 +9,7 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.CATmistry">
-        <activity android:name=".LearnSubtopicContentViewer"></activity>
+        <activity android:name=".LearnSubtopicContentViewer" />
         <activity android:name=".HomeLearnListViewer" />
         <activity
                 android:name=".LearnQuizActivity"

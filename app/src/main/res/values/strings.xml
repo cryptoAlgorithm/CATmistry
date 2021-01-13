@@ -16,6 +16,7 @@
 
     <!-- Learn quiz page -->
     <string name="gameTimer_desc">Remaining time for question:</string>
+    <string name="quiz_data_loading">Please wait for the quiz to be loaded…</string>
     <string name="opt_err">Could not retrieve option</string>
     <string name="end_quiz_title">End Quiz?</string>
     <string name="end_quiz_body">By ending the quiz, all progress will be lost</string>
@@ -34,8 +35,6 @@
     <string name="quiz_pass">You\'ve passed the quiz with flying colors! Excellent! You can now proceed to the next activity!</string>
     <string name="quiz_fail">Unfortunately, you\'ve failed the quiz. Read up on the learning topics and reattempt the quiz! You can do it!</string>
     <string name="quiz_exit_btn">Exit</string>
-
-    <!-- Homescreen list viewer -->
 
     <!-- Settings page -->
     <string name="settings_header">Settings</string>

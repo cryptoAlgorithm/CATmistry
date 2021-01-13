@@ -87,5 +87,12 @@ class HomeLearnListViewer : AppCompatActivity(), RecyclerViewClickListener {
             quizIntent.putExtra("quizTopic", intent.extras?.getString("quizIndex"))
             startActivity(quizIntent)
         }
+        else {
+            val contentViewerIntent = Intent(this, LearnSubtopicContentViewer::class.java)
+            contentViewerIntent.putExtra("learnTopic", intent.extras?.getString("quizIndex"))
+            contentViewerIntent.putExtra("learnItem", itemID.toString())
+
+            startActivity(contentViewerIntent)
+        }
     }
 }
