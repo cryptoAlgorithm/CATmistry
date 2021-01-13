@@ -23,6 +23,11 @@ class LearnSubtopicContentViewer : AppCompatActivity(), RecyclerViewClickListene
 
         val database = Firebase.database.reference
 
+        topAppBar.setNavigationOnClickListener {
+            onBackPressed() // Instead of using android's default navigation which restarts the previous activity
+            finish()
+        }
+
         // Update app bar header and content
         val learnTopicListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
