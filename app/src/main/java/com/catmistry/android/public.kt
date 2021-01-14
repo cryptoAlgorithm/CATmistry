@@ -14,7 +14,9 @@ data class LearnTopics (
 )
 data class SubTopicContent (
     var content: String? = "Failed to retrieve content",
-    var appBarTitle: String? = "Gas Tests"
+    var appBarTitle: String? = "Gas Tests",
+    var bottomImage: String? = "gas_tests",
+    var showPHSlider: Boolean? = false
 )
 
 // Interfaces

@@ -1,4 +1,6 @@
 <resources>
+    <!-- Generic stuff -->
+    <string name="data_loading">Loading data…</string>
     <string name="app_name">CATmistry</string>
     <string name="appbar_settings">Settings</string>
     <string name="title_learn">Learn</string>
@@ -35,6 +37,11 @@
     <string name="quiz_pass">You\'ve passed the quiz with flying colors! Excellent! You can now proceed to the next activity!</string>
     <string name="quiz_fail">Unfortunately, you\'ve failed the quiz. Read up on the learning topics and reattempt the quiz! You can do it!</string>
     <string name="quiz_exit_btn">Exit</string>
+
+    <!-- pH slider -->
+    <string name="slider_start">pH 1</string>
+    <string name="slider_end">pH 14</string>
+    <string name="pH_currentDesc">Current pH: %1$s\n%2$s</string>
 
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
