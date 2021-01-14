@@ -41,7 +41,9 @@ class HomescreenTopicsAdapter(
             "drawable", context.packageName
         )
 
-        holder.iconImg.setImageResource(resourceId)
+        try {
+            holder.iconImg.setImageResource(resourceId) // Might throw error if resID is a number
+        } catch (e: Exception) {}
         holder.title.text = data[position]?.title
     }
 
