@@ -18,6 +18,16 @@ data class SubTopicContent (
     var bottomImage: String? = "gas_tests",
     var showPHSlider: Boolean? = false
 )
+data class PhArray (
+    var pHImg: String? = "ph_0",
+    var pHDesc: String? = "Stomach Acid",
+)
+data class NestedSubTopicContent (
+    var firstContent: String? = "Failed to load data",
+    var secondContent: String? = "",
+    var thirdContent: String? = "",
+    var showPHSlider: Boolean? = false
+)
 
 // Interfaces
 interface RecyclerViewClickListener {

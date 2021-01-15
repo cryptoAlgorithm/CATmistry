@@ -236,7 +236,6 @@ class LearnQuizActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 dataSnapshot.children.forEach {
                     val listData = it.getValue<LearnQns>()
-                    Log.e("ListData", listData.toString())
                     questionsArray.add(listData)
                 }
                 repeat(10) {
