@@ -1,5 +1,7 @@
 package com.catmistry.android
 
+import kotlin.math.roundToInt
+
 // Data classes
 // I actually put sensible defaults
 data class LearnQns (
@@ -32,5 +34,13 @@ data class NestedSubTopicContent (
 // Interfaces
 interface RecyclerViewClickListener {
     fun itemClicked(itemID: Int)
+}
+
+// Extension functions
+fun Float.round(decimals: Int): Float {
+    var dotAt = 1
+    repeat(decimals) { dotAt *= 10 }
+    val roundedValue = (this * dotAt).roundToInt()
+    return (roundedValue / dotAt) + (roundedValue % dotAt).toFloat() / dotAt
 }
 

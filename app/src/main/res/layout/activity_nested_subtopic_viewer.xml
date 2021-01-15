@@ -79,6 +79,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <!-- Slider bar -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/slider_start"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/phSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:valueFrom="1.0"
+                    android:valueTo="14.0" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:text="@string/slider_end"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:layout_height="wrap_content" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/pHSliderDisc"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceBody1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.core.widget.NestedScrollView>

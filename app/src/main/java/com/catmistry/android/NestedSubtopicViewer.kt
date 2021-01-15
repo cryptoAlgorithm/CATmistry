@@ -9,8 +9,14 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_nested_subtopic_viewer.*
+import kotlin.math.min
 
 class NestedSubtopicViewer : AppCompatActivity() {
+    private fun updatePhUI(ph: Float) {
+        val roundedText = ph.round(2).toString().padEnd(4, '0')
+        pHSliderDisc.text = getString(R.string.pH_currentDesc, roundedText.substring(0, min(4, roundedText.length)), "Not implemented")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nested_subtopic_viewer)
@@ -47,5 +53,11 @@ class NestedSubtopicViewer : AppCompatActivity() {
             .child(intent.extras?.getString("subTopic").toString())
             .child(intent.extras?.getString("nestedTopic").toString())
             .addValueEventListener(nestedDataListener)
+
+        // Handle pH slider
+        phSlider.addOnChangeListener { _, value, fromUser ->
+            // Responds to when slider's value is changed
+            if (fromUser) updatePhUI(value)
+        }
     }
 }
