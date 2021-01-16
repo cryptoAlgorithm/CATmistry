@@ -104,7 +104,7 @@ class LearnSubtopicContentViewer : AppCompatActivity(), RecyclerViewClickListene
                                     // Finally update UI
                                     pHSliderHolder.visibility = View.VISIBLE  // Make slider linearlayout visible
                                     bottomImageView.visibility = View.VISIBLE // Make image visible
-                                    updatePHImg(1f) // 1.0
+                                    updatePHImg(7f) // 1.0
 
                                     // Handle pH slider
                                     phSlider.addOnChangeListener { _, value, fromUser ->

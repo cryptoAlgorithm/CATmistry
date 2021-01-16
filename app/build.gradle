@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.catmistry.android"
@@ -34,6 +34,11 @@ android {
             zipAlignEnabled true
 
             minifyEnabled true
+
+            // Disable all debugging
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
