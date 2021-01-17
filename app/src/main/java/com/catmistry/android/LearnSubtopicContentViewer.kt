@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_learn_subtopic_content_viewer.*
 
 class LearnSubtopicContentViewer : AppCompatActivity(), RecyclerViewClickListener {
 
-    val nestedTopics: ArrayList<LearnTopics?> = ArrayList()
+    val nestedTopics: ArrayList<HomeTopics?> = ArrayList()
     val pHData: ArrayList<PhArray?> = ArrayList()
 
     private fun updatePHImg(ph: Float) {
@@ -52,7 +52,7 @@ class LearnSubtopicContentViewer : AppCompatActivity(), RecyclerViewClickListene
 
                 var i = 0
                 dataSnapshot.children.forEach {
-                    val listData = it.getValue<LearnTopics>()
+                    val listData = it.getValue<HomeTopics>()
                     when {
                         nestedTopics.isEmpty() -> {
                             nestedTopics.add(listData)

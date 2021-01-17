@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             bottom_navigation.selectedItemId = when(position) {
                 0 -> R.id.navigation_learn
                 1 -> R.id.navigation_play
+                2 -> R.id.navigation_music
                 else -> R.id.navigation_learn
             }
         }
@@ -35,6 +36,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_play -> {
                 viewpager.setCurrentItem(1, true)
+                true
+            }
+            R.id.navigation_music -> {
+                viewpager.setCurrentItem(2, true)
                 true
             }
             else -> false
@@ -65,16 +70,16 @@ class MainActivity : AppCompatActivity() {
         // Init Firebase, first things first
         FirebaseApp.initializeApp(applicationContext)
 
-        /*try {
+        try {
             Firebase.database.setPersistenceEnabled(true) // Enable offline capabilities
         }
-        catch (e: Exception) {}*/
+        catch (e: Exception) {}
 
         // Init Analytics
         Firebase.analytics
 
-        viewpager.adapter = BottomTabAdapter(this, 2)
-        viewpager.offscreenPageLimit = 2
+        viewpager.adapter = BottomTabAdapter(this, 3)
+        viewpager.offscreenPageLimit = 3
 
         // Change callback to update bottom navigation's selected item
         viewpager.registerOnPageChangeCallback(contentChangeCallback)

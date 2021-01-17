@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.homescreen_list_item.view.*
 
 
 class HomescreenTopicsAdapter(
-    private val data: ArrayList<LearnTopics?>,
-    private val clickListener: RecyclerViewClickListener,
-    private val context: Context
+        private val data: ArrayList<HomeTopics?>,
+        private val clickListener: RecyclerViewClickListener,
+        private val context: Context
 ): RecyclerView.Adapter<HomescreenTopicsAdapter.ViewHolder>() {
 
     private fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T { // Adapter for onClickListener

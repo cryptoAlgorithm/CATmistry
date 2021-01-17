@@ -27,7 +27,7 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
         return inflater.inflate(R.layout.fragment_learn_list, container, false)
     }
 
-    val learningTopics: ArrayList<LearnTopics?> = ArrayList()
+    val learningTopics: ArrayList<HomeTopics?> = ArrayList()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -40,7 +40,7 @@ class LearnListFragment : Fragment(), RecyclerViewClickListener {
 
                 var i = 0
                 dataSnapshot.children.forEach {
-                    val listData = it.getValue<LearnTopics>()
+                    val listData = it.getValue<HomeTopics>()
                     when {
                         learningTopics.isEmpty() -> {
                             learningTopics.add(listData)

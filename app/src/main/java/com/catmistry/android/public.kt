@@ -9,7 +9,7 @@ data class LearnQns (
     var question: String? = "",
     var options: List<String>? = null
 )
-data class LearnTopics (
+data class HomeTopics (
     var icon: String? = "gas_tests",
     var title: String? = "Gas Tests",
     var unlockPoints: Int? = 0

@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_baseline_videogame_asset_24"
         android:title="@string/title_play" />
 
+    <item
+        android:id="@+id/navigation_music"
+        android:icon="@drawable/ic_round_music_note_24"
+        android:title="@string/music_nav_title" />
+
 </menu>

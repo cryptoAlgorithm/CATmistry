@@ -15,6 +15,7 @@ class BottomTabAdapter(activity: AppCompatActivity, private val itemsCount: Int)
         return when(position) {
             0 -> LearnListFragment()
             1 -> GameListFragment()
+            2 -> MusicFragment()
             else -> LearnListFragment()
         }
     }

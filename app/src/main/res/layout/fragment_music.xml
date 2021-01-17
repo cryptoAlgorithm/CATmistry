@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MusicFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:background="?attr/play_header_bg"
+        android:layout_height="128dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
+            app:contentScrim="?attr/play_header_bg"
+            app:expandedTitleMarginBottom="28dp"
+            app:expandedTitleMarginStart="20dp"
+            android:background="?attr/play_header_bg"
+            app:title="@string/music_header"
+            app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="?attr/play_header_bg">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/play_header_bg"
+                android:elevation="0dp"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/buffering"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:trackThickness="10dp"
+                android:indeterminate="true"
+                android:contentDescription="@string/gameTimer_desc"
+                app:trackCornerRadius="10dp" />
+
+            <com.catmistry.android.SquareImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/ic_round_music_note_24"
+                android:tint="?attr/colorOnPrimary"/>
+
+            <!-- Currently playing song -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/songTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="@string/no_playing_song"
+                android:gravity="center_horizontal"
+                android:textFontWeight="900"
+                android:textAppearance="?attr/textAppearanceHeadline4"
+                android:layout_marginTop="10dp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/elapsed"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_gravity="center"
+                    android:text="@string/duration_placeholder" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/seekBar"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:valueFrom="0.0"
+                    android:valueTo="100.0"
+                    android:layout_weight="1"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/remaining"
+                    android:layout_width="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_gravity="center"
+                    android:text="@string/duration_placeholder"
+                    android:textAlignment="textEnd"
+                    android:gravity="end" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/pausePlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_round_play_arrow_24"
+                android:focusable="true"
+                android:contentDescription="@string/play_control" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="20dp">
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/repeatToggle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/product_sans"
+                    android:text="@string/repeat"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/stopFAB"
+                    android:layout_marginLeft="8dp"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/stopFAB"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:clickable="true"
+                    app:fabCustomSize="40dp"
+                    app:srcCompat="@drawable/ic_round_stop_24"
+                    android:focusable="true"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/stop_description"
+                    android:layout_marginLeft="10dp"
+                    android:elevation="0dp"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Bottom sheet -->
+    <!-- Start Bottom Sheet -->
+    <LinearLayout
+        android:id="@+id/musicSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="85dp"
+        android:elevation="10dp"
+        android:background="@drawable/rounded_bottom_sheet"
+        android:scrollbars="none"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bottom_sheet_hint"
+                    android:alpha="0.7"
+                    android:layout_height="6dp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/song_select_hint"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline4"
+                    android:gravity="center_horizontal" />
+
+                <!-- Song list -->
+                <TableLayout
+                    android:id="@+id/songsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="24dp"
+                    android:showDividers="middle" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -45,15 +45,22 @@
     <string name="slider_end">pH 14</string>
     <string name="pH_currentDesc">Current pH: %1$s\n%2$s</string>
 
+    <!-- Music player -->
+    <string name="music_header">Music 🎵</string>
+    <string name="music_nav_title">Music</string>
+    <string name="duration_placeholder">--:--</string>
+    <string name="duration_template">%1$s:%2$s</string>
+    <string name="repeat">Repeat</string>
+    <string name="stop_description">Stop music</string>
+    <string name="play_control">Play/pause music</string>
+    <string name="song_select_hint">Songs</string>
+    <string name="no_playing_song">No song playing</string>
+
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>
     <string name="credits_header">Credits</string>
-    <string name="credits_team">Programmed by Vincent Kwok\n
-With graphics and design by The CATmistry Team:\n
-Neo Hao Jun\n
-Wang Zerui\n
-Chanel Tab\n
-Ryu Hwina
+    <string name="credits_team">
+        Programmed by Vincent Kwok\nWith graphics and design by The CATmistry Team:\nNeo Hao Jun\nWang Zerui\nChanel Tan\nRyu Hwina
     </string>
 </resources>

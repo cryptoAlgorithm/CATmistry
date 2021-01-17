@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_learn_list.*
 
 class HomeLearnListViewer : AppCompatActivity(), RecyclerViewClickListener {
 
-    private val listTopics: ArrayList<LearnTopics?> = ArrayList()
+    private val listTopics: ArrayList<HomeTopics?> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +39,7 @@ class HomeLearnListViewer : AppCompatActivity(), RecyclerViewClickListener {
 
                 var i = 0
                 dataSnapshot.children.forEach {
-                    val listData = it.getValue<LearnTopics>()
+                    val listData = it.getValue<HomeTopics>()
                     when {
                         listTopics.isEmpty() -> {
                             listTopics.add(listData)

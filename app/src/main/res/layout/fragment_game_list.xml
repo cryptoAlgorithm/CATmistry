@@ -38,108 +38,14 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layoutAnimation="@anim/home_list_layout_anim"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:divider="@drawable/home_list_divider"
-            app:showDividers="middle"
-            android:orientation="vertical">
-
-            <!-- Find the right gas -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:foreground="?selectableItemBackground"
-                android:layout_height="80dp">
-
-                <com.catmistry.android.SquareImageView
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/gas_tests"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:layout_gravity="center"
-                    android:text="@string/find_gas" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <!-- Retrieve the solids -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:foreground="?selectableItemBackground"
-                android:layout_height="80dp">
-
-                <com.catmistry.android.SquareImageView
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/separation_methods"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:layout_gravity="center"
-                    android:text="@string/retrieve_solid" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <!-- Adjust the pH -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:foreground="?selectableItemBackground"
-                android:layout_height="80dp">
-
-                <com.catmistry.android.SquareImageView
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ph_and_indicators"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:layout_gravity="center"
-                    android:text="@string/adj_ph" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <!-- Identify the elements -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:foreground="?selectableItemBackground"
-                android:layout_height="80dp">
-
-                <com.catmistry.android.SquareImageView
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/periodic_table"/>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAppearance="?attr/textAppearanceHeadline5"
-                    android:layout_gravity="center"
-                    android:text="@string/identify_elem" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
