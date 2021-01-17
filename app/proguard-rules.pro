@@ -20,6 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep public class com.catmistry.android.** {
+-keep class com.catmistry.android.** {
     *;
 }

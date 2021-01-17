@@ -27,12 +27,12 @@ class LearnSubtopicContentViewer : AppCompatActivity(), RecyclerViewClickListene
 
         // Update image
         bottomImageView.setImageResource(resources.getIdentifier(
-                pHData[pHIndex-1]?.pHImg,
+                pHData[pHIndex-1]?.phImg,
                 "drawable", packageName
         ))
 
         // Update text
-        pHSliderDisc.text = getString(R.string.pH_currentDesc, pHIndex.toString(), pHData[pHIndex-1]?.pHDesc)
+        pHSliderDisc.text = getString(R.string.pH_currentDesc, pHIndex.toString(), pHData[pHIndex-1]?.phDesc)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

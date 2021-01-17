@@ -20,9 +20,9 @@ data class SubTopicContent (
     var bottomImage: String? = "gas_tests",
     var showPHSlider: Boolean? = false
 )
-data class PhArray (
-    var pHImg: String? = "ph_0",
-    var pHDesc: String? = "Stomach Acid",
+data class PhArray(
+    var phImg: String? = "ph_0",
+    var phDesc: String? = "Stomach Acid",
 )
 data class NestedSubTopicContent (
     var firstContent: String? = "Failed to load data",

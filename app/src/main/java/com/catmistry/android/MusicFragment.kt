@@ -324,6 +324,17 @@ class MusicFragment : Fragment() {
         repeatToggle.setOnCheckedChangeListener { _, isChecked ->
             BgMusicPlayerService.repeat = isChecked
         }
+
+        // Appbar onclick listeners
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.appbar_settings -> {
+                    startActivity(Intent(requireActivity().applicationContext, SettingsActivity::class.java)) // Open settings
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
