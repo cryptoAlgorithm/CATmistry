@@ -16,6 +16,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_nested_subtopic_viewer.*
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 
 class NestedSubtopicViewer : AppCompatActivity() {
@@ -35,13 +36,27 @@ class NestedSubtopicViewer : AppCompatActivity() {
 
     private fun updatePhUI(ph: Float) {
         val roundedText = ph.round(2).toString().padEnd(4, '0')
+        val oldColor = pHIndicatorColor.cardBackgroundColor.defaultColor
+
+        if (intent.extras?.getString("title").equals("Universal Indicator")) { // Hardcode this
+            val pHColors = listOf("#EF1D2C", "#F6643A", "#F98F30", "#FFC33D", "#FFF23A", "#83C34D", "#49B751", "#3B9C57", "#00B8B6", "#4390CA", "#3753A1", "#5A519F", "#6D227E", "#49176C")
+            val pHColorsDesc = listOf("Red", "Dark Orange", "Orange", "Light Orange/Dark Yellow", "Yellow", "Light Green", "Green", "Dark Green", "Light Blue", "Blue", "Dark Blue", "Light Purple", "Purple", "Dark Purple")
+
+            repeat(14) {
+                if (ph >= it + 1 && ph < it + 2) {
+                    pHTransitionColor(oldColor, Color.parseColor(pHColors[it]))
+                    pHSliderDisc.text = getString(R.string.pH_currentDesc, roundedText.substring(0, min(4, roundedText.length)), pHColorsDesc[it])
+                }
+            }
+
+            return
+        }
         // Get color description
         val phColorDesc = when {
             ph >= nestedData?.highPH!! -> nestedData?.highPHDesc
             ph <= nestedData?.lowPH!!  -> nestedData?.lowPHDesc
             else -> nestedData?.midPHDesc
         }
-        val oldColor = pHIndicatorColor.cardBackgroundColor.defaultColor
         // Set color
         try { // Catch color parse errors
             when {
