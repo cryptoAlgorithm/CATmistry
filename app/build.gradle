@@ -33,6 +33,7 @@ android {
             pseudoLocalesEnabled false
             zipAlignEnabled true
 
+            minifyEnabled true
 
             // Disable all debugging
             debuggable false
