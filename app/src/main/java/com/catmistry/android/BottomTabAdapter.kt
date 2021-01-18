@@ -16,6 +16,7 @@ class BottomTabAdapter(activity: AppCompatActivity, private val itemsCount: Int)
             0 -> LearnListFragment()
             1 -> GameListFragment()
             2 -> MusicFragment()
+            // 2 -> LearnListFragment() // For debug purposes
             else -> LearnListFragment()
         }
     }

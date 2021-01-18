@@ -1,5 +1,6 @@
 package com.catmistry.android
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +55,19 @@ class SettingsActivity : AppCompatActivity() {
                     }
                     true
                 }
+
+            findPreference<ListPreference>("theme")?.setOnPreferenceClickListener {
+                // Share app text
+
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_text))
+                    type = "text/plain"
+                }
+
+                startActivity(Intent.createChooser(sendIntent, null))
+                true
+            }
         }
     }
 }

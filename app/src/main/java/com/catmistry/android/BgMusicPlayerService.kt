@@ -52,12 +52,17 @@ class BgMusicPlayerService : Service() {
         else {
             "Pause"
         }
-        return NotificationCompat.Builder(this, CHANNEL_ID)
+        return if (Build.VERSION.SDK_INT >= 21) NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(songName)
             .setContentText("CATmistry Music Player")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(pendingIntent)
             .addAction(R.drawable.ic_round_pause_24, text, pendingPauseIntent)
+        else NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle(songName)
+                .setSmallIcon(R.drawable.cat_happy)
+                .setContentText("CATmistry Music Player")
+                .setContentIntent(pendingIntent)
     }
 
 

@@ -21,4 +21,13 @@
             app:summary="@string/credits_team_subtitle" />
     </PreferenceCategory>
 
+    <PreferenceCategory>
+
+        <Preference
+            android:key="shareApp"
+            app:icon="@drawable/ic_round_share_24"
+            app:title="@string/share_app" />
+
+    </PreferenceCategory>
+
 </PreferenceScreen>

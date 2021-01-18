@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true) // Enable vector in old android versions
+
         // Set app theme based on preferences
         when (PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(
             "theme",

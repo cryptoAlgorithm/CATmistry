@@ -31,6 +31,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/music_header_bg"
                 app:menu="@menu/home_appbar_menu"
+                android:elevation="0dp"
                 app:layout_collapseMode="pin" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -75,6 +76,7 @@
                 android:textAlignment="center"
                 android:text="@string/no_playing_song"
                 android:gravity="center_horizontal"
+                android:textFontWeight="900"
                 android:textAppearance="?attr/textAppearanceHeadline4"
                 android:layout_marginTop="10dp" />
 
@@ -123,11 +125,18 @@
                 android:focusable="true"
                 android:contentDescription="@string/play_control" />
 
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="20dp">
+
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/repeatToggle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/product_sans"
                     android:text="@string/repeat"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -139,12 +148,14 @@
                     app:fabSize="mini"
                     app:srcCompat="@drawable/ic_round_stop_24"
                     android:focusable="true"
+                    android:layout_marginStart="10dp"
                     android:contentDescription="@string/stop_description"
+                    android:elevation="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
+                    android:layout_width="wrap_content" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
-
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 
     <!-- Bottom sheet -->
@@ -155,8 +166,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="75dp"
-        android:background="?attr/cardBackgroundColor"
+        app:behavior_peekHeight="85dp"
+        android:elevation="10dp"
+        android:background="@drawable/rounded_bottom_sheet"
         android:scrollbars="none"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -169,6 +181,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bottom_sheet_hint"
+                    android:alpha="0.7"
+                    android:layout_height="6dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/textView"
