@@ -18,6 +18,7 @@
         <!-- Header colors -->
         <item name="learn_header_bg">#796b38</item>
         <item name="play_header_bg">#346379</item>
+        <item name="music_header_bg">#805B27</item>
         <!-- Custom font -->
         <item name="fontFamily">@font/product_sans</item>
         <item name="android:fontFamily">@font/product_sans</item>

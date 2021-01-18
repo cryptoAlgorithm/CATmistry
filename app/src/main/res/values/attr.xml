@@ -2,6 +2,7 @@
 <resources>
     <attr name="learn_header_bg" format="color" />
     <attr name="play_header_bg" format="color" />
+    <attr name="music_header_bg" format="color" />
     <attr name="appBarBg" format="color" />
     <attr name="quizOneBg" format="color" />
     <attr name="quizTwoBg" format="color" />

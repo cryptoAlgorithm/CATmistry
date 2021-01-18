@@ -8,7 +8,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:background="?attr/play_header_bg"
+        android:background="?attr/music_header_bg"
         android:layout_height="128dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -18,7 +18,7 @@
             app:contentScrim="?attr/play_header_bg"
             app:expandedTitleMarginBottom="28dp"
             app:expandedTitleMarginStart="20dp"
-            android:background="?attr/play_header_bg"
+            android:background="?attr/music_header_bg"
             app:title="@string/music_header"
             app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
@@ -29,7 +29,7 @@
                 style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/play_header_bg"
+                android:background="?attr/music_header_bg"
                 app:menu="@menu/home_appbar_menu"
                 android:elevation="0dp"
                 app:layout_collapseMode="pin" />

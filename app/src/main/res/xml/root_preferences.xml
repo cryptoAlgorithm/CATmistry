@@ -15,7 +15,10 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/credits_header">
-        <Preference app:title="@string/credits_team" />
+        <Preference
+            app:icon="@drawable/ic_round_info_24"
+            app:title="@string/credits_team"
+            app:summary="@string/credits_team_subtitle" />
     </PreferenceCategory>
 
 </PreferenceScreen>

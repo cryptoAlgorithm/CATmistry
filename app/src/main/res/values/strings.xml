@@ -53,14 +53,15 @@
     <string name="repeat">Repeat</string>
     <string name="stop_description">Stop music</string>
     <string name="play_control">Play/pause music</string>
-    <string name="song_select_hint">Songs</string>
+    <string name="song_select_hint">Song List</string>
     <string name="no_playing_song">No song playing</string>
 
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>
-    <string name="credits_header">Credits</string>
-    <string name="credits_team">
-        Programmed by Vincent Kwok\nWith graphics and design by The CATmistry Team:\nNeo Hao Jun\nWang Zerui\nChanel Tan\nRyu Hwina
+    <string name="credits_header">Credits and Others</string>
+    <string name="credits_team">Programmed by Vincent Kwok</string>
+    <string name="credits_team_subtitle">
+        With graphics and design by The CATmistry Team:\nNeo Hao Jun\nWang Zerui\nChanel Tan\nRyu Hwina
     </string>
 </resources>

@@ -226,6 +226,9 @@ class MusicFragment : Fragment() {
                             )
                     )
                 }
+
+                // Restore repeat toggle state
+                repeatToggle.isChecked = BgMusicPlayerService.repeat
             }
         }
         else {
@@ -240,6 +243,13 @@ class MusicFragment : Fragment() {
                         R.drawable.ic_round_play_arrow_24
                     )
                 )
+
+                elapsed.text = getString(R.string.duration_placeholder)
+                remaining.text = getString(R.string.duration_placeholder) // Clear both TextViews
+                songTitle.text = getString(R.string.no_playing_song) // Reset to default song
+
+                // Clear repeat toggle state
+                repeatToggle.isChecked = false
             }
         }
 
@@ -277,12 +287,7 @@ class MusicFragment : Fragment() {
             }
         }
         seekBar.setLabelFormatter { _ ->
-            try {
-                val millisecondsElapsed = BgMusicPlayerService.getElapsed
-                requireActivity().getString(R.string.duration_template,
-                        (millisecondsElapsed/1000/60).toString().padStart(2, '0'),
-                        (millisecondsElapsed/1000%60).toString().padStart(2, '0')) // Minutes:Seconds
-            } catch (e: Exception) { "--:--" }
+            remaining.text.toString()
         }
 
         if (!BgMusicPlayerService.isPaused && BgMusicPlayerService.isPlaying) {
@@ -300,13 +305,9 @@ class MusicFragment : Fragment() {
             playPause()
         }
         stopFAB.setOnClickListener {
-            seekBar.value = 0f
-            elapsed.text = getString(R.string.duration_placeholder)
-            remaining.text = getString(R.string.duration_placeholder) // Clear both TextViews
-            songTitle.text = getString(R.string.no_playing_song) // Reset to default song
             val intent = Intent(requireContext(), BgMusicPlayerService::class.java)
                 .apply {
-                    action = "com.zerui.hackathonthing.action.STOP"
+                    action = "com.catmistry.android.action.STOP"
                 }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 requireActivity().startForegroundService(intent)
@@ -314,12 +315,7 @@ class MusicFragment : Fragment() {
             else {
                 requireActivity().startService(intent)
             }
-            pausePlay.setImageDrawable(
-                ContextCompat.getDrawable(
-                    requireContext(),
-                    R.drawable.ic_round_play_arrow_24
-                )
-            )
+            updateElements()
         }
         repeatToggle.setOnCheckedChangeListener { _, isChecked ->
             BgMusicPlayerService.repeat = isChecked

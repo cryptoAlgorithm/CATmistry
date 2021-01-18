@@ -88,8 +88,9 @@ class BgMusicPlayerService : Service() {
             }
             STOP -> {
                 mediaPlayer.release()
-                isPlaying = false // Must reset var
+                isPlaying = false // Must reset vars to default state
                 isPaused = false
+                repeat = false
                 stopForeground(true) // Kill itself
                 stopSelf() // Close immediately
             }
@@ -170,7 +171,7 @@ class BgMusicPlayerService : Service() {
         var getElapsed: Long
             get() = mediaPlayer.currentPosition.toLong()
             set(_) = sinkHole()
-        var getRemaining: Long
+        var getRemaining                                  : Long
             get() = (mediaPlayer.duration - mediaPlayer.currentPosition).toLong()
             set(_) = sinkHole()
 
