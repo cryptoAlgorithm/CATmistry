@@ -97,9 +97,10 @@ class GameListFragment : Fragment(), RecyclerViewClickListener {
         /*val quizIntent = Intent(requireActivity(), LearnQuizActivity::class.java)
         quizIntent.putExtra("quizTopic", itemID.toString())
         startActivity(quizIntent)*/
-        val quizIntent = Intent(requireActivity(), HomeLearnListViewer::class.java)
-        quizIntent.putExtra("quizHeader", gameTopics[itemID]?.title)
-        quizIntent.putExtra("quizIndex", itemID.toString())
+        val quizIntent = Intent(requireActivity(), StartGameActivity::class.java)
+        quizIntent.putExtra("gameDesc", gameTopics[itemID]?.description)
+        quizIntent.putExtra("gameIndex", itemID)
+        quizIntent.putExtra("gameIcon", gameTopics[itemID]?.gameIcon)
         startActivity(quizIntent)
     }
 

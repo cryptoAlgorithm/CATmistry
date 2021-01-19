@@ -12,7 +12,9 @@ data class LearnQns (
 data class HomeTopics (
     var icon: String? = "gas_tests",
     var title: String? = "Gas Tests",
-    var unlockPoints: Int? = 0
+    var unlockPoints: Int? = 0,
+    var description: String? = "No description",
+    var gameIcon: String? = "cat_happy",
 )
 data class SubTopicContent (
     var content: String? = "Failed to retrieve content",
@@ -38,6 +40,10 @@ data class NestedSubTopicContent (
     var midPHDesc: String? = "Green",
     var highPHDesc: String? = "Blue",
     var mainImg: String? = "gas_tests"
+)
+data class GasGameArray(
+    var phImg: String? = "ph_0",
+    var phDesc: String? = "Stomach Acid",
 )
 
 // Interfaces

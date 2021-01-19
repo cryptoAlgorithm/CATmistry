@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.catmistry.android">
-
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -13,11 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CATmistry">
-        <!-- Foreground Service for playing music in background -->
+        <activity android:name=".GasGameActivity"></activity>
+        <activity android:name=".StartGameActivity" /> <!-- Foreground Service for playing music in background -->
         <service
             android:name=".BgMusicPlayerService"
             android:enabled="true"
             android:exported="false" />
+
         <activity android:name=".NestedSubtopicViewer" />
         <activity android:name=".LearnSubtopicContentViewer" />
         <activity android:name=".HomeLearnListViewer" />

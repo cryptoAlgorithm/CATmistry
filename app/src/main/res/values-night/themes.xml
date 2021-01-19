@@ -30,5 +30,10 @@
         <item name="quizQnBg">#607C79</item>
         <!-- Card background color -->
         <item name="cardBackgroundColor">#222222</item>
+        <!-- Game colors -->
+        <item name="gameTopBg">#111754</item>
+        <item name="gameMidBg">#508445</item>
+        <item name="gameEndBg">#4e342e</item>
+
     </style>
 </resources>

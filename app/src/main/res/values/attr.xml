@@ -9,4 +9,7 @@
     <attr name="quizThreeBg" format="color" />
     <attr name="quizFourBg" format="color" />
     <attr name="quizQnBg" format="color" />
+    <attr name="gameTopBg" format="color" />
+    <attr name="gameMidBg" format="color" />
+    <attr name="gameEndBg" format="color" />
 </resources>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GasGameActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameTopBg"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:layout_height="wrap_content">
+
+            <com.catmistry.android.SquareImageView
+                android:id="@+id/gameBottomImg"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameMidBg"
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:orientation="vertical"
+            android:background="?attr/gameEndBg"
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
+
+            <Button
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:id="@+id/goBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_game"
+                style="?attr/materialButtonOutlinedStyle" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:trackThickness="10dp"
+                android:contentDescription="@string/gameTimer_desc"
+                app:trackCornerRadius="10dp" />
+
+            <!-- Gas test options -->
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:weightSum="4"
+                android:layout_height="100dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/gasTestOne"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/stroke_color"
+                    app:cardElevation="12dp"
+                    android:layout_width="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="7dp"
+                    android:layout_height="match_parent">
+
+                    <com.catmistry.android.SquareImageView
+                        android:layout_margin="5dp"
+                        app:srcCompat="@drawable/limewater"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/gasTestTwo"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/stroke_color"
+                    app:cardElevation="12dp"
+                    android:layout_width="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="7dp"
+                    android:layout_height="match_parent">
+
+                    <com.catmistry.android.SquareImageView
+                        android:layout_margin="5dp"
+                        app:srcCompat="@drawable/lighted_splint"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/gasTestThree"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/stroke_color"
+                    app:cardElevation="12dp"
+                    android:layout_width="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="7dp"
+                    android:layout_height="match_parent">
+
+                    <com.catmistry.android.SquareImageView
+                        android:layout_margin="5dp"
+                        app:srcCompat="@drawable/glowing_splint"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/gasTestFour"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/stroke_color"
+                    app:cardElevation="12dp"
+                    android:layout_width="0dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="7dp"
+                    android:layout_height="match_parent">
+
+                    <com.catmistry.android.SquareImageView
+                        android:layout_margin="5dp"
+                        app:srcCompat="@drawable/litmus"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.card.MaterialCardView
+                app:cardElevation="10dp"
+                app:cardCornerRadius="7dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/targetGas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp">
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackground"
+                                app:srcCompat="@drawable/gas_tank"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackground"
+                                app:srcCompat="@drawable/gas_tank"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackground"
+                                app:srcCompat="@drawable/gas_tank"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="5dp"
+                                android:layout_weight="1"
+                                android:background="?attr/selectableItemBackground"
+                                app:srcCompat="@drawable/gas_tank"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <Button
+                        android:id="@+id/submitGasAns"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/submit_gas" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -40,6 +40,13 @@
     <string name="quiz_fail">Unfortunately, you\'ve failed the quiz. Read up on the learning topics and reattempt the quiz! You can do it!</string>
     <string name="quiz_exit_btn">Exit</string>
 
+    <!-- Game page -->
+    <string name="start_game">Start</string>
+    <string name="go_back">Go Back</string>
+    <string name="end_game">End game</string>
+    <string name="select_difficulty">Select level difficulty</string>
+    <string name="submit_gas">Submit</string>
+
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>
     <string name="slider_end">pH 14</string>
