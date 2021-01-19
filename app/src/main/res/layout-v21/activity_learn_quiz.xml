@@ -77,22 +77,26 @@
             <Button
                 android:id="@+id/optOne"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/quizOneBg" />
 
             <Button
                 android:id="@+id/optTwo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/quizTwoBg" />
 
             <Button
                 android:id="@+id/optThree"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/quizThreeBg" />
 
             <Button
                 android:id="@+id/optFour"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:backgroundTint="?attr/quizFourBg" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -105,7 +109,8 @@
         android:layout_height="wrap_content"
         app:behavior_hideable="true"
         app:behavior_peekHeight="200dp"
-        android:background="?attr/cardBackgroundColor"
+        android:background="@drawable/rounded_bottom_sheet"
+        android:elevation="10dp"
         android:scrollbars="none"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -122,13 +127,20 @@
                 android:orientation="vertical"
                 android:gravity="center_horizontal">
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="60dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bottom_sheet_hint"
+                    android:alpha="0.7"
+                    android:layout_height="6dp" />
+
                 <com.catmistry.android.SquareImageView
                     android:id="@+id/resultImg"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    app:srcCompat="@drawable/check"/>
+                    android:src="@drawable/check"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/resultHeader"

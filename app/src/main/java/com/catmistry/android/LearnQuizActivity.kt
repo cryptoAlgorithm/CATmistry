@@ -36,10 +36,13 @@ class LearnQuizActivity : AppCompatActivity() {
         val runnable = Runnable {
             while (continueTimer && !Thread.interrupted()) {
                 val newProg = ((timeLeft!! / totalTime) * 100.0).toInt()
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    progressBar.setProgress(newProg, true)
+
+                runOnUiThread {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        progressBar.setProgress(newProg, true)
+                    }
+                    else progressBar.progress = newProg
                 }
-                else progressBar.progress = newProg
 
                 if (timeLeft!! <= 0.0) {
                     runOnUiThread {

@@ -56,7 +56,7 @@ class SettingsActivity : AppCompatActivity() {
                     true
                 }
 
-            findPreference<ListPreference>("theme")?.setOnPreferenceClickListener {
+            findPreference<Preference>("shareApp")?.setOnPreferenceClickListener {
                 // Share app text
 
                 val sendIntent: Intent = Intent().apply {
