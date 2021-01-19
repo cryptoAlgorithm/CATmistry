@@ -32,19 +32,9 @@
             android:layout_height="25dp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:orientation="vertical"
             android:background="?attr/gameEndBg"
             android:layout_width="match_parent"
             android:layout_height="65dp">
-
-            <Button
-                android:layout_marginTop="8dp"
-                android:layout_gravity="center"
-                android:id="@+id/goBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/end_game"
-                style="?attr/materialButtonOutlinedStyle" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -184,7 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textAppearance="?attr/textAppearanceHeadline6" />
+                        android:textAppearance="?attr/textAppearanceHeadline4" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_marginTop="15dp"
@@ -192,6 +182,7 @@
                         android:layout_height="100dp">
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/gasOne"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackground"
@@ -200,6 +191,7 @@
                                 android:layout_height="match_parent"/>
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/gasTwo"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackground"
@@ -208,6 +200,7 @@
                                 android:layout_height="match_parent"/>
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/gasThree"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackground"
@@ -216,6 +209,7 @@
                                 android:layout_height="match_parent"/>
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/gasFour"
                                 android:layout_margin="5dp"
                                 android:layout_weight="1"
                                 android:background="?attr/selectableItemBackground"

@@ -14,10 +14,6 @@ class GasGameActivity : AppCompatActivity() {
             "drawable", packageName
         ))
 
-        goBack.setOnClickListener {
-            onBackPressed()
-        }
-
         // Gas tests onclick listeners
         gasTestOne.setOnClickListener {
 
@@ -29,6 +25,20 @@ class GasGameActivity : AppCompatActivity() {
 
         }
         gasTestFour.setOnClickListener {
+
+        }
+
+        // Gas tanks onclick listeners
+        gasOne.setOnClickListener {
+
+        }
+        gasTwo.setOnClickListener {
+
+        }
+        gasThree.setOnClickListener {
+
+        }
+        gasFour.setOnClickListener {
 
         }
     }
