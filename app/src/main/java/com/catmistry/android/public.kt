@@ -42,8 +42,15 @@ data class NestedSubTopicContent (
     var mainImg: String? = "gas_tests"
 )
 data class GasGameArray(
-    var phImg: String? = "ph_0",
-    var phDesc: String? = "Stomach Acid",
+    var correctGasTank: String? = "Hydrogen",
+    var firstGasIsPositive: List<Boolean>? = null,
+    var firstGasTank: String? = "Database Error",
+    var forthGasIsPositive: List<Boolean>? = null,
+    var fourthGasTank: String? = "Database Error",
+    var secondGasIsPositive: List<Boolean>? = null,
+    var secondGasTank: String? = "Database Error",
+    var thirdGasIsPositive: List<Boolean>? = null,
+    var thirdGasTank: String? = "Database Error",
 )
 
 // Interfaces

@@ -67,27 +67,29 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
+                android:clipToPadding="false"
                 android:weightSum="4"
-                android:layout_height="100dp">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/gasTestOne"
                     android:clickable="true"
                     android:focusable="true"
+                    android:checkable="true"
                     app:strokeWidth="1dp"
                     app:strokeColor="@color/stroke_color"
-                    app:cardElevation="12dp"
+                    app:cardElevation="8dp"
                     android:layout_width="0dp"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="7dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
-                        android:layout_margin="5dp"
+                        android:layout_margin="8dp"
                         app:srcCompat="@drawable/limewater"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -95,20 +97,21 @@
                     android:id="@+id/gasTestTwo"
                     android:clickable="true"
                     android:focusable="true"
+                    android:checkable="true"
                     app:strokeWidth="1dp"
                     app:strokeColor="@color/stroke_color"
-                    app:cardElevation="12dp"
+                    app:cardElevation="8dp"
                     android:layout_width="0dp"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="7dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
-                        android:layout_margin="5dp"
+                        android:layout_margin="8dp"
                         app:srcCompat="@drawable/lighted_splint"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -116,20 +119,21 @@
                     android:id="@+id/gasTestThree"
                     android:clickable="true"
                     android:focusable="true"
+                    android:checkable="true"
                     app:strokeWidth="1dp"
                     app:strokeColor="@color/stroke_color"
-                    app:cardElevation="12dp"
+                    app:cardElevation="8dp"
                     android:layout_width="0dp"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="7dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
-                        android:layout_margin="5dp"
+                        android:layout_margin="8dp"
                         app:srcCompat="@drawable/glowing_splint"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -137,27 +141,28 @@
                     android:id="@+id/gasTestFour"
                     android:clickable="true"
                     android:focusable="true"
+                    android:checkable="true"
                     app:strokeWidth="1dp"
                     app:strokeColor="@color/stroke_color"
-                    app:cardElevation="12dp"
+                    app:cardElevation="8dp"
                     android:layout_width="0dp"
-                    android:layout_margin="5dp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     app:cardCornerRadius="7dp"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
-                        android:layout_margin="5dp"
+                        android:layout_margin="8dp"
                         app:srcCompat="@drawable/litmus"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <com.google.android.material.card.MaterialCardView
-                app:cardElevation="10dp"
+                app:cardElevation="12dp"
                 app:cardCornerRadius="7dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
@@ -177,49 +182,164 @@
                         android:textAppearance="?attr/textAppearanceHeadline4" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp">
+                        android:clipToPadding="false"
+                        android:weightSum="4"
+                        android:layout_height="wrap_content">
 
-                            <com.catmistry.android.SquareImageView
-                                android:id="@+id/gasOne"
-                                android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:background="?attr/selectableItemBackground"
-                                app:srcCompat="@drawable/gas_tank"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/gasOne"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="4dp"
+                            android:layout_width="0dp"
+                            android:layout_marginEnd="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
 
-                            <com.catmistry.android.SquareImageView
-                                android:id="@+id/gasTwo"
-                                android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:background="?attr/selectableItemBackground"
-                                app:srcCompat="@drawable/gas_tank"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
 
-                            <com.catmistry.android.SquareImageView
-                                android:id="@+id/gasThree"
-                                android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:background="?attr/selectableItemBackground"
-                                app:srcCompat="@drawable/gas_tank"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                <com.catmistry.android.SquareImageView
+                                    android:layout_margin="4dp"
+                                    app:srcCompat="@drawable/gas_tank"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
 
-                            <com.catmistry.android.SquareImageView
-                                android:id="@+id/gasFour"
-                                android:layout_margin="5dp"
-                                android:layout_weight="1"
-                                android:background="?attr/selectableItemBackground"
-                                app:srcCompat="@drawable/gas_tank"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"/>
+                                <com.catmistry.android.SquareImageView
+                                    android:visibility="invisible"
+                                    android:id="@+id/gasOneOverlay"
+                                    android:layout_margin="15dp"
+                                    app:srcCompat="@drawable/check"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/gasTwo"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="4dp"
+                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <com.catmistry.android.SquareImageView
+                                    android:layout_margin="4dp"
+                                    app:srcCompat="@drawable/gas_tank"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <com.catmistry.android.SquareImageView
+                                    android:visibility="invisible"
+                                    android:id="@+id/gasTwoOverlay"
+                                    android:layout_margin="15dp"
+                                    app:srcCompat="@drawable/check"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/gasThree"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="4dp"
+                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <com.catmistry.android.SquareImageView
+                                    android:layout_margin="4dp"
+                                    app:srcCompat="@drawable/gas_tank"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <com.catmistry.android.SquareImageView
+                                    android:visibility="invisible"
+                                    android:id="@+id/gasThreeOverlay"
+                                    android:layout_margin="15dp"
+                                    app:srcCompat="@drawable/check"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/gasFour"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="4dp"
+                            android:layout_width="0dp"
+                            android:layout_marginStart="3dp"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <com.catmistry.android.SquareImageView
+                                    android:layout_margin="4dp"
+                                    app:srcCompat="@drawable/gas_tank"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <com.catmistry.android.SquareImageView
+                                    android:visibility="invisible"
+                                    android:id="@+id/gasFourOverlay"
+                                    android:layout_margin="15dp"
+                                    app:srcCompat="@drawable/check"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <Button
+                        android:enabled="false"
                         android:id="@+id/submitGasAns"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -228,6 +348,13 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </com.google.android.material.card.MaterialCardView>
+
+            <Button
+                android:id="@+id/endGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_game"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
