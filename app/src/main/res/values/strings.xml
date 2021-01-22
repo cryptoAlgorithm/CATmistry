@@ -45,12 +45,15 @@
     <string name="go_back">Go Back</string>
     <string name="end_game">End game</string>
     <string name="select_difficulty">Select level difficulty</string>
+    <!-- Gas game -->
+    <string name="submit_gas">Submit</string>
+    <string name="gas_game_correct">You\'ve got it correct! Keep up the good work! There %1$s remaining.</string>
+    <string name="gas_game_wrong">Whoops, that\'s the wrong answer. Keep trying! There %1$s remaining.</string>
 
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>
     <string name="slider_end">pH 14</string>
     <string name="pH_currentDesc">Current pH: %1$s\n%2$s</string>
-    <string name="submit_gas">Submit</string>
 
     <!-- Music player -->
     <string name="music_header">Music</string>

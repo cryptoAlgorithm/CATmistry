@@ -1,10 +1,11 @@
 package com.catmistry.android
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,6 +18,87 @@ import kotlinx.android.synthetic.main.activity_gas_game.*
 class GasGameActivity : AppCompatActivity() {
     var gameData: ArrayList<GasGameArray?> = ArrayList()
     var questionsSeq: ArrayList<Int> = ArrayList()
+    private var continueTimer = false
+    private var timeLeft: Double? = null
+    private var currentTimerThread: Thread? = null
+    private var reallyExit: Boolean = false
+
+    private fun resumeTimer() {
+        continueTimer = true // Resume timer
+        startTimer(10000.0)
+    }
+
+    override fun onBackPressed() {
+        val prevState = continueTimer
+
+        continueTimer = false // Pause timer if running
+
+        if (reallyExit) {
+            super.onBackPressed()
+            finish()
+            return
+        }
+
+        MaterialAlertDialogBuilder(this)
+                .setTitle(resources.getString(R.string.end_quiz_title))
+                .setMessage(resources.getString(R.string.end_quiz_body))
+                .setNegativeButton(resources.getString(R.string.end_quiz_ok)) { _, _ ->
+                    // Respond to negative button press
+                    super.onBackPressed()
+                    finish()
+                }
+                .setPositiveButton(resources.getString(R.string.end_quiz_no)) { _, _ ->
+                    // Respond to positive button press
+                    if (prevState) {
+                        resumeTimer()
+                    }
+                }
+                .setOnCancelListener {
+                    if (prevState) {
+                        resumeTimer()
+                    }
+                }
+                .show()
+    }
+
+    private fun startTimer(totalTime: Double) {
+        if (timeLeft == null) timeLeft = totalTime
+
+        val runnable = Runnable {
+            while (continueTimer && !Thread.interrupted()) {
+                val newProg = ((timeLeft!! / totalTime) * 100.0).toInt()
+
+                runOnUiThread {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        progressBar.setProgress(newProg, true)
+                    }
+                    else progressBar.progress = newProg
+                }
+
+                if (timeLeft!! <= 0.0) {
+                    runOnUiThread {
+                        // Stuff that updates the UI
+                        // Android how I hate you
+                        checkAns()
+                    }
+
+                    timeLeft = null
+                    break
+                }
+
+                timeLeft = timeLeft!! - 50
+
+                try {
+                    Thread.sleep(50)
+                }
+                catch(e: Exception) {}
+            }
+
+            continueTimer = false
+        }
+        currentTimerThread = Thread(runnable)
+        currentTimerThread?.start()
+    }
 
     private fun clearGasTestChecks() {
         gasTestOne.isChecked = false
@@ -54,18 +136,26 @@ class GasGameActivity : AppCompatActivity() {
         else gasFourOverlay.setImageResource(R.drawable.close)
     }
 
+    private fun ansCorrect() {
+        Snackbar.make(submitGasAns, getString(R.string.gas_game_correct, questionsSeq.size.toString()), Snackbar.LENGTH_SHORT).show()
+    }
+
     private fun checkAns() {
         val question = gameData[questionsSeq[0]]
-        if (gasOne.isChecked && question?.correctGasTank.equals(question?.firstGasTank)) Snackbar.make(submitGasAns, "Korrect", Snackbar.LENGTH_SHORT).show()
-        else if (gasTwo.isChecked && question?.correctGasTank.equals(question?.secondGasTank)) Snackbar.make(submitGasAns, "Korrect", Snackbar.LENGTH_SHORT).show()
-        else if (gasThree.isChecked && question?.correctGasTank.equals(question?.thirdGasTank)) Snackbar.make(submitGasAns, "Korrect", Snackbar.LENGTH_SHORT).show()
-        else if (gasFour.isChecked && question?.correctGasTank.equals(question?.fourthGasTank)) Snackbar.make(submitGasAns, "Korrect", Snackbar.LENGTH_SHORT).show()
-        else Snackbar.make(submitGasAns, "Wang", Snackbar.LENGTH_SHORT).show()
+        if (gasOne.isChecked && question?.correctGasTank.equals(question?.firstGasTank)) ansCorrect()
+        else if (gasTwo.isChecked && question?.correctGasTank.equals(question?.secondGasTank)) ansCorrect()
+        else if (gasThree.isChecked && question?.correctGasTank.equals(question?.thirdGasTank)) ansCorrect()
+        else if (gasFour.isChecked && question?.correctGasTank.equals(question?.fourthGasTank)) ansCorrect()
+        else Snackbar.make(submitGasAns, getString(R.string.gas_game_wrong, questionsSeq.size.toString()), Snackbar.LENGTH_SHORT).show()
 
         questionsSeq.removeFirstOrNull()
 
+        continueTimer = false
+        currentTimerThread?.interrupt()
+        timeLeft = null
+
         if (questionsSeq.isEmpty()) {
-            Snackbar.make(submitGasAns, "Game end", Snackbar.LENGTH_SHORT).show()
+            reallyExit = true
             onBackPressed()
         }
         else initUiElem()
@@ -81,6 +171,9 @@ class GasGameActivity : AppCompatActivity() {
         gasTwoOverlay.visibility = View.INVISIBLE
         gasThreeOverlay.visibility = View.INVISIBLE
         gasFourOverlay.visibility = View.INVISIBLE
+
+        continueTimer = true
+        startTimer(5000.0)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
