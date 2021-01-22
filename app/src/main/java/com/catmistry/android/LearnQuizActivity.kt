@@ -65,6 +65,15 @@ class LearnQuizActivity : AppCompatActivity() {
         currentTimerThread = Thread(runnable)
         currentTimerThread?.start()
     }
+    
+    private fun quizResultAnim(correct: Boolean = true) {
+        resultAnim.cancelAnimation() // Stop animation if it's running
+        resultAnim.pauseAnimation()
+        if (correct) resultAnim.setAnimation(R.raw.check)
+        else resultAnim.setAnimation(R.raw.cross)
+        resultAnim.resumeAnimation()
+        resultAnim.playAnimation()
+    }
 
     private fun showNextQn() {
         reallyExit = false
@@ -80,8 +89,8 @@ class LearnQuizActivity : AppCompatActivity() {
             resultHeader.text = getString(R.string.endOfQuiz, numCorrectAns.toString())
             resultSubtitle.text = if (numCorrectAns >= 5) getString(R.string.quiz_pass)
             else getString(R.string.quiz_fail)
-            if (numCorrectAns >= 5) resultImg.setImageResource(R.drawable.check)
-            else resultImg.setImageResource(R.drawable.close)
+            if (numCorrectAns >= 5) quizResultAnim(true)
+            else quizResultAnim(false)
             reallyExit = true
 
             BottomSheetBehavior.from(resultsSheet).state = BottomSheetBehavior.STATE_EXPANDED
@@ -135,7 +144,7 @@ class LearnQuizActivity : AppCompatActivity() {
         else getString(R.string.quiz_remaining_plural, questionsRemaining.toString())
 
         if (enteredAns == correctAns) {
-            resultImg.setImageResource(R.drawable.check)
+            quizResultAnim(true)
             resultHeader.text = getString(R.string.quiz_result_correct)
             resultSubtitle.text = getString(R.string.correct_ans_correct, questionsLeftText)
             konfettiView.build()
@@ -155,7 +164,7 @@ class LearnQuizActivity : AppCompatActivity() {
             numCorrectAns++
         }
         else {
-            resultImg.setImageResource(R.drawable.close)
+            quizResultAnim(false)
             resultHeader.text = getString(R.string.quiz_result_wrong, questionsLeftText)
             resultSubtitle.text = getString(R.string.correct_ans_wrong, questionsArray[questionsSeq[0]]?.options?.get(correctAns - 1))
         }
