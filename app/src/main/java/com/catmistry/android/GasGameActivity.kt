@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
@@ -22,10 +23,11 @@ class GasGameActivity : AppCompatActivity() {
     private var timeLeft: Double? = null
     private var currentTimerThread: Thread? = null
     private var reallyExit: Boolean = false
+    private var totalTime: Double = 0.0
 
     private fun resumeTimer() {
         continueTimer = true // Resume timer
-        startTimer(10000.0)
+        startTimer(totalTime)
     }
 
     override fun onBackPressed() {
@@ -40,14 +42,14 @@ class GasGameActivity : AppCompatActivity() {
         }
 
         MaterialAlertDialogBuilder(this)
-                .setTitle(resources.getString(R.string.end_quiz_title))
-                .setMessage(resources.getString(R.string.end_quiz_body))
-                .setNegativeButton(resources.getString(R.string.end_quiz_ok)) { _, _ ->
+                .setTitle(getString(R.string.end_game_header))
+                .setMessage(getString(R.string.end_game_content))
+                .setNegativeButton(getString(R.string.end_game)) { _, _ ->
                     // Respond to negative button press
                     super.onBackPressed()
                     finish()
                 }
-                .setPositiveButton(resources.getString(R.string.end_quiz_no)) { _, _ ->
+                .setPositiveButton(getString(R.string.cont_game)) { _, _ ->
                     // Respond to positive button press
                     if (prevState) {
                         resumeTimer()
@@ -173,12 +175,16 @@ class GasGameActivity : AppCompatActivity() {
         gasFourOverlay.visibility = View.INVISIBLE
 
         continueTimer = true
-        startTimer(5000.0)
+        startTimer(totalTime)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gas_game)
+
+        // Set difficulty globally
+        totalTime = (5.0 - intent.extras?.getDouble("difficulty")!!) * 5000.0
+        // Toast.makeText(this, intent.extras!!.getDouble("difficulty").toString(), Toast.LENGTH_LONG).show()
 
         // Get data from database
         val gameTopicListener = object : ValueEventListener {
