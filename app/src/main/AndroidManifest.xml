@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CATmistry">
-        <activity android:name=".GasGameActivity"></activity>
+        <activity android:name=".RetrieveGameActivity" />
+        <activity android:name=".GasGameActivity" />
         <activity android:name=".StartGameActivity" /> <!-- Foreground Service for playing music in background -->
         <service
             android:name=".BgMusicPlayerService"

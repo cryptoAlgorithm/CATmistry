@@ -139,16 +139,20 @@ class GasGameActivity : AppCompatActivity() {
     }
 
     private fun ansCorrect() {
-        Snackbar.make(submitGasAns, getString(R.string.gas_game_correct, questionsSeq.size.toString()), Snackbar.LENGTH_SHORT).show()
+        val leftQns = if (questionsSeq.size - 1 == 1) getString(R.string.quiz_remaining_singular)
+        else getString(R.string.quiz_remaining_plural, (questionsSeq.size-1).toString())
+        Snackbar.make(submitGasAns, getString(R.string.gas_game_correct, leftQns), Snackbar.LENGTH_LONG).show()
     }
 
     private fun checkAns() {
         val question = gameData[questionsSeq[0]]
+        val leftQns = if (questionsSeq.size - 1 == 1) getString(R.string.quiz_remaining_singular)
+        else getString(R.string.quiz_remaining_plural, (questionsSeq.size-1).toString())
         if (gasOne.isChecked && question?.correctGasTank.equals(question?.firstGasTank)) ansCorrect()
         else if (gasTwo.isChecked && question?.correctGasTank.equals(question?.secondGasTank)) ansCorrect()
         else if (gasThree.isChecked && question?.correctGasTank.equals(question?.thirdGasTank)) ansCorrect()
         else if (gasFour.isChecked && question?.correctGasTank.equals(question?.fourthGasTank)) ansCorrect()
-        else Snackbar.make(submitGasAns, getString(R.string.gas_game_wrong, questionsSeq.size.toString()), Snackbar.LENGTH_SHORT).show()
+        else Snackbar.make(submitGasAns, getString(R.string.gas_game_wrong, leftQns), Snackbar.LENGTH_LONG).show()
 
         questionsSeq.removeFirstOrNull()
 

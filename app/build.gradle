@@ -15,8 +15,8 @@ android {
         applicationId "com.catmistry.android"
         minSdkVersion 18
         targetSdkVersion 30
-        versionCode 45
-        versionName "0.4.6"
+        versionCode 46
+        versionName "0.4.7"
 
         multiDexEnabled true // Enable MultiDex
 
@@ -66,7 +66,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Google Material Library

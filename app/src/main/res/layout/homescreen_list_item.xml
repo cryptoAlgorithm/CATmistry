@@ -22,6 +22,7 @@
         android:text="@string/gas_tests" />
 
     <com.catmistry.android.SquareImageView
+        android:id="@+id/rightArrow"
         android:layout_width="25dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"

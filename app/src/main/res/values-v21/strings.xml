@@ -52,6 +52,8 @@
     <string name="submit_gas">Submit</string>
     <string name="gas_game_correct">You\'ve got it correct! Keep up the good work! There %1$s remaining.</string>
     <string name="gas_game_wrong">Whoops, that\'s the wrong answer. Keep trying! There %1$s remaining.</string>
+    <!-- Separation methods game -->
+    <string name="choose_sep_method">Pick a separation method</string>
 
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>

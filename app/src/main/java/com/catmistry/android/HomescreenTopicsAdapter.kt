@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.homescreen_list_item.view.*
 class HomescreenTopicsAdapter(
         private val data: ArrayList<HomeTopics?>,
         private val clickListener: RecyclerViewClickListener,
-        private val context: Context
+        private val context: Context,
+        private val showArrow: Boolean = true
 ): RecyclerView.Adapter<HomescreenTopicsAdapter.ViewHolder>() {
 
     private fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T { // Adapter for onClickListener
@@ -45,6 +46,9 @@ class HomescreenTopicsAdapter(
             holder.iconImg.setImageResource(resourceId) // Might throw error if resID is a number
         } catch (e: Exception) {}
         holder.title.text = data[position]?.title
+
+        // Check if the right arrow should be shown
+        holder.rightIcon.visibility = if (showArrow) View.VISIBLE else View.GONE
     }
 
     override fun getItemCount(): Int {
@@ -54,5 +58,6 @@ class HomescreenTopicsAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: MaterialTextView = itemView.listTitle
         val iconImg: SquareImageView = itemView.listIcon
+        val rightIcon: SquareImageView = itemView.rightArrow
     }
 }
