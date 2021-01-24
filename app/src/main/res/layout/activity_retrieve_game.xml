@@ -15,16 +15,7 @@
             android:background="?attr/gameTopBg"
             android:layout_weight="1"
             android:layout_width="match_parent"
-            android:gravity="center_horizontal|bottom"
-            android:layout_height="wrap_content">
-
-            <com.catmistry.android.SquareImageView
-                android:id="@+id/gameBottomImg"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:background="?attr/gameMidBg"

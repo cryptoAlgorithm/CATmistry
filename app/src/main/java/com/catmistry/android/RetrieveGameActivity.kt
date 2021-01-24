@@ -26,7 +26,8 @@ import kotlinx.android.synthetic.main.table_thin_row.view.*
 
 class SeparationGameAdapter(
     private val data: ArrayList<String>,
-    private val clickListener: TableRowClickListener
+    private val clickListener: TableRowClickListener,
+    private val dataSeq: ArrayList<Int>
 ): RecyclerView.Adapter<SeparationGameAdapter.ViewHolder>() {
     private fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T { // Adapter for onClickListener
         itemView.setOnClickListener {
@@ -49,11 +50,11 @@ class SeparationGameAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.content.text = data[position]
+        holder.content.text = data[dataSeq[position]]
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return dataSeq.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -65,12 +66,17 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
     private val separationMethods: ArrayList<HomeTopics?> = ArrayList()
     private val separationSubstances: ArrayList<String> = ArrayList()
     private val sepAns: ArrayList<Int> = ArrayList()
+    private val subSeq: ArrayList<Int> = ArrayList()
     private var selectedSubstance = -1
     private var waveProg = 50
+    private var totalTime = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_retrieve_game)
+
+        if (intent.extras?.getDouble("difficulty") == 1.0) progressBar.visibility = View.INVISIBLE // Inf time at lowest diff
+        else totalTime = (5 - intent.extras?.getDouble("difficulty")!!) * 4000 // Diff 2: 16 secs, diff 3: 8 secs, diff 4: 4 secs
 
         // Load list of separation methods
         val learnTopicListener = object : ValueEventListener {
@@ -142,10 +148,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
                     i++
                 }
 
-                runOnUiThread {
-                    sepSubstances.adapter?.notifyDataSetChanged()
-                    sepSubstances.scheduleLayoutAnimation()
-                }
+                checkSeqLen()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -175,7 +178,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
 
         sepSubstances.apply {
             this.layoutManager = LinearLayoutManager(context)
-            this.adapter = SeparationGameAdapter(separationSubstances, this@RetrieveGameActivity)
+            this.adapter = SeparationGameAdapter(separationSubstances, this@RetrieveGameActivity, subSeq)
             this.addItemDecoration(
                 DividerItemDecoration(
                     context,
@@ -200,13 +203,29 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
         anim.start()
     }
 
+    private fun checkSeqLen() {
+        repeat((waveProg / 10) - subSeq.size) {
+            var selectedIndex: Int
+            do {
+                selectedIndex = (0 until separationSubstances.size).random()
+            } while (subSeq.contains(selectedIndex))
+
+            subSeq.add(selectedIndex)
+        }
+
+        runOnUiThread {
+            sepSubstances.adapter?.notifyDataSetChanged()
+            sepSubstances.scheduleLayoutAnimation()
+        }
+    }
+
     override fun itemClicked(itemID: Int) {
         if (selectedSubstance < 0) {
             Snackbar.make(sepMethods, R.string.choose_sep_substance, Snackbar.LENGTH_SHORT).show()
             return
         }
         // Check if ans is correct
-        if (sepAns[selectedSubstance] == itemID) waveProg -= 10
+        if (sepAns[subSeq[selectedSubstance]] == itemID) waveProg -= 10
         else waveProg += 10
         // Check if the cup is empty or full
         if (waveProg < 0) {
@@ -217,13 +236,10 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
             Snackbar.make(sepMethods, "Lost!", Snackbar.LENGTH_SHORT).show()
             return
         }
-        separationSubstances.removeAt(selectedSubstance)
-        sepAns.removeAt(selectedSubstance)
+        subSeq.removeAt(selectedSubstance)
         selectedSubstance = -1 // Reset selected variables
         sepSubstance.text = getString(R.string.choose_sep_substance)
-        runOnUiThread {
-            sepSubstances.adapter?.notifyDataSetChanged()
-        }
+        checkSeqLen() // Update length of substances to be separated
         // Set cup progress
         wave_view.setProgress(waveProg)
         // Change wave background
@@ -236,7 +252,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
 
     override fun rowClicked(itemID: Int) {
         sepSubstance.text = getString(
-            R.string.sep_substance_template, separationSubstances[itemID].split(
+            R.string.sep_substance_template, separationSubstances[subSeq[itemID]].split(
                 " - "
             )[0]
         )
