@@ -48,10 +48,10 @@
     <string name="end_game_content">All progress will be lost, and you\'ll be brought back to the start page of this game</string>
     <string name="cont_game">Continue game</string>
     <string name="select_difficulty">Select level difficulty</string>
-    <!-- Gas game -->
-    <string name="submit_gas">Submit</string>
     <string name="game_correct">You\'ve got it correct! Keep up the good work! There %1$s remaining.</string>
     <string name="game_wrong">Whoops, that\'s the wrong answer. Keep trying! There %1$s remaining.</string>
+    <!-- Gas game -->
+    <string name="submit_gas">Submit</string>
     <!-- Separation methods game -->
     <string name="choose_sep_substance">Choose a substance above first</string>
     <string name="sep_method_instruction">Read the description below and click on the substances to choose a separation method.</string>
@@ -78,6 +78,7 @@
         <item>Magnetism</item>
     </string-array> -->
     <string name="sep_substance_template">Separation method for %1$s</string>
+    <string name="sep_game_correct">That\'s the correct answer!</string>
 
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>
