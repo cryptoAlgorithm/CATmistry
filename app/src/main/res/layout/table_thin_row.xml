@@ -6,12 +6,12 @@
     android:background="?selectableItemBackground"
     android:id="@+id/one_row">
 
-    <TextView
-        android:id="@+id/country"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/rowContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:layout_marginStart="10dp" />
 

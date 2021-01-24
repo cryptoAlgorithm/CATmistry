@@ -1,7 +1,5 @@
 package com.catmistry.android
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.graphics.Color
@@ -16,7 +14,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_nested_subtopic_viewer.*
 import kotlin.math.min
-import kotlin.math.roundToInt
 
 
 class NestedSubtopicViewer : AppCompatActivity() {

@@ -88,4 +88,6 @@ dependencies {
     // Lottie animation library
     def lottieVersion = "3.6.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    compile 'com.github.john990:WaveView:v0.9'
 }

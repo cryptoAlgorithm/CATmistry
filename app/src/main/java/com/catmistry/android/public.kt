@@ -57,6 +57,9 @@ data class GasGameArray(
 interface RecyclerViewClickListener {
     fun itemClicked(itemID: Int)
 }
+interface TableRowClickListener {
+    fun rowClicked(itemID: Int)
+}
 
 // Extension functions
 fun Float.round(decimals: Int): Float {

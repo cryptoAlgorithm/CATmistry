@@ -16,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.fragment_music.*
-import kotlinx.android.synthetic.main.song_row.view.*
+import kotlinx.android.synthetic.main.table_thin_row.view.*
 import java.util.*
 
 class MusicFragment : Fragment() {
@@ -45,17 +45,17 @@ class MusicFragment : Fragment() {
 
                 listResult.items.forEach { item ->
                     // All the items under listRef.
-                    val row = inflater.inflate(R.layout.song_row, songTable, false)
+                    val row = inflater.inflate(R.layout.table_thin_row, songTable, false)
                     val songName = item.name.replace("_", " ").capitalizeWords().substringBeforeLast(
                         '.',
                         ""
                     )
-                    row.country.text = songName
-                    val param = row.country.layoutParams as ViewGroup.MarginLayoutParams
+                    row.rowContent.text = songName
+                    val param = row.rowContent.layoutParams as ViewGroup.MarginLayoutParams
                     val margin = (5 *
                             Resources.getSystem().displayMetrics.density).toInt()
                     param.setMargins(margin * 3, margin, margin, margin) // Left margin should be 15dp
-                    row.country.layoutParams = param
+                    row.rowContent.layoutParams = param
                     // Replace underscores with spaces and capitalise (Somehow resources cannot have any of those)
                     row.setOnClickListener { it ->
                         BottomSheetBehavior.from(musicSheet).state = BottomSheetBehavior.STATE_COLLAPSED

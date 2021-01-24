@@ -3,9 +3,7 @@ package com.catmistry.android
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DataSnapshot
@@ -141,7 +139,7 @@ class GasGameActivity : AppCompatActivity() {
     private fun ansCorrect() {
         val leftQns = if (questionsSeq.size - 1 == 1) getString(R.string.quiz_remaining_singular)
         else getString(R.string.quiz_remaining_plural, (questionsSeq.size-1).toString())
-        Snackbar.make(submitGasAns, getString(R.string.gas_game_correct, leftQns), Snackbar.LENGTH_LONG).show()
+        Snackbar.make(submitGasAns, getString(R.string.game_correct, leftQns), Snackbar.LENGTH_LONG).show()
     }
 
     private fun checkAns() {
@@ -152,7 +150,7 @@ class GasGameActivity : AppCompatActivity() {
         else if (gasTwo.isChecked && question?.correctGasTank.equals(question?.secondGasTank)) ansCorrect()
         else if (gasThree.isChecked && question?.correctGasTank.equals(question?.thirdGasTank)) ansCorrect()
         else if (gasFour.isChecked && question?.correctGasTank.equals(question?.fourthGasTank)) ansCorrect()
-        else Snackbar.make(submitGasAns, getString(R.string.gas_game_wrong, leftQns), Snackbar.LENGTH_LONG).show()
+        else Snackbar.make(submitGasAns, getString(R.string.game_wrong, leftQns), Snackbar.LENGTH_LONG).show()
 
         questionsSeq.removeFirstOrNull()
 
