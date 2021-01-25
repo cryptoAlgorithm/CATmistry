@@ -228,7 +228,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
         if (sepAns[subSeq[selectedSubstance]] == itemID) waveProg -= 10
         else {
             waveProg += 10
-            Snackbar.make(sepMethods, getString(R.string.correct_ans_wrong, separationMethods[subSeq[selectedSubstance]]?.title), Snackbar.LENGTH_LONG)
+            Snackbar.make(sepMethods, getString(R.string.correct_ans_wrong, separationMethods[sepAns[subSeq[selectedSubstance]]]?.title), Snackbar.LENGTH_LONG)
                     .show()
         }
         // Check if the cup is empty or full
