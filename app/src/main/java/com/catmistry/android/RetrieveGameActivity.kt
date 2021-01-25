@@ -204,15 +204,26 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
     }
 
     private fun checkSeqLen() {
-        repeat((waveProg / 10) - subSeq.size) {
-            var selectedIndex: Int
-            do {
-                selectedIndex = (0 until separationSubstances.size).random()
-            } while (subSeq.contains(selectedIndex))
+        if ((waveProg / 10) - subSeq.size <= separationSubstances.size) {
+            repeat((waveProg / 10) - subSeq.size) {
+                var selectedIndex: Int
+                do {
+                    selectedIndex = (0 until separationSubstances.size).random()
+                } while (subSeq.contains(selectedIndex))
 
-            subSeq.add(selectedIndex)
+                subSeq.add(selectedIndex)
+            }
         }
 
+        runOnUiThread {
+            sepSubstances.adapter?.notifyDataSetChanged()
+            sepSubstances.scheduleLayoutAnimation()
+        }
+    }
+
+    private fun stopGame() {
+        subSeq.clear()
+        selectedSubstance = -1
         runOnUiThread {
             sepSubstances.adapter?.notifyDataSetChanged()
             sepSubstances.scheduleLayoutAnimation()
@@ -235,7 +246,6 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
         subSeq.removeAt(selectedSubstance)
         selectedSubstance = -1 // Reset selected variables
         sepSubstance.text = getString(R.string.choose_sep_substance)
-        checkSeqLen() // Update length of substances to be separated
 
         // Set cup progress
         wave_view.setProgress(waveProg)
@@ -243,12 +253,16 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
         // Check if the cup is empty or full
         if (waveProg <= 0) {
             Snackbar.make(sepMethods, "Won!", Snackbar.LENGTH_SHORT).show()
+            stopGame()
             return
         }
         else if (waveProg >= 100) {
             Snackbar.make(sepMethods, "Lost!", Snackbar.LENGTH_SHORT).show()
+            stopGame()
             return
         }
+
+        checkSeqLen() // Update length of substances to be separated
 
         // Change wave background
         when {
