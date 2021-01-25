@@ -204,7 +204,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
     }
 
     private fun checkSeqLen() {
-        repeat((waveProg / 10) - subSeq.size + 1) {
+        repeat((waveProg / 10) - subSeq.size) {
             var selectedIndex: Int
             do {
                 selectedIndex = (0 until separationSubstances.size).random()
@@ -231,21 +231,25 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
             Snackbar.make(sepMethods, getString(R.string.correct_ans_wrong, separationMethods[sepAns[subSeq[selectedSubstance]]]?.title), Snackbar.LENGTH_LONG)
                     .show()
         }
-        // Check if the cup is empty or full
-        if (waveProg < 0) {
-            Snackbar.make(sepMethods, "Won!", Snackbar.LENGTH_SHORT).show()
-            return
-        }
-        else if (waveProg > 100) {
-            Snackbar.make(sepMethods, "Lost!", Snackbar.LENGTH_SHORT).show()
-            return
-        }
+
         subSeq.removeAt(selectedSubstance)
         selectedSubstance = -1 // Reset selected variables
         sepSubstance.text = getString(R.string.choose_sep_substance)
         checkSeqLen() // Update length of substances to be separated
+
         // Set cup progress
         wave_view.setProgress(waveProg)
+
+        // Check if the cup is empty or full
+        if (waveProg <= 0) {
+            Snackbar.make(sepMethods, "Won!", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+        else if (waveProg >= 100) {
+            Snackbar.make(sepMethods, "Lost!", Snackbar.LENGTH_SHORT).show()
+            return
+        }
+
         // Change wave background
         when {
             waveProg <= 20 -> changeCupBg(Color.rgb(67, 160, 71)) // Green - good
