@@ -204,7 +204,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
     }
 
     private fun checkSeqLen() {
-        repeat((waveProg / 10) - subSeq.size) {
+        repeat((waveProg / 10) - subSeq.size + 1) {
             var selectedIndex: Int
             do {
                 selectedIndex = (0 until separationSubstances.size).random()

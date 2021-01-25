@@ -35,4 +35,8 @@
         <item name="gameMidBg">#649859</item>
         <item name="gameEndBg">#847E2C</item>
     </style>
+
+    <style name="SplashScreenTheme" parent="Theme.CATmistry">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
 </resources>

@@ -36,4 +36,8 @@
         <item name="gameEndBg">#4e342e</item>
 
     </style>
+
+    <style name="SplashScreenTheme" parent="Theme.CATmistry">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
 </resources>

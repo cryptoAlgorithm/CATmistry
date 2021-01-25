@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_CATmistry)
+
         super.onCreate(savedInstanceState)
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true) // Enable vector in old android versions
