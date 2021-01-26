@@ -3,6 +3,8 @@ package com.catmistry.android
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
@@ -22,6 +24,29 @@ class HomeLearnListViewer : AppCompatActivity(), RecyclerViewClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set app theme based on preferences
+        val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        when (pref.getString(
+                "theme",
+                "auto"
+        )) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Light theme
+            else -> { // Follow system theme/unset
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                        .edit()
+                        .putString("theme", "auto")
+                        .apply() // Prevent unset state
+            }
+        }
+
+        when (pref.getBoolean("dyslexiaFont", false)) {
+            true -> setTheme(R.style.DyslexicFont)
+            false -> setTheme(R.style.Theme_CATmistry)
+        }
+
         setContentView(R.layout.activity_home_learn_list_viewer)
 
         appBarHolder.title = intent.extras?.getString("quizHeader")

@@ -4,9 +4,9 @@
     <font
         app:fontStyle="normal"
         app:fontWeight="400"
-        app:font="@font/google_product_sans" />
+        app:font="@font/dyslexic_normal" />
     <font
         app:fontStyle="normal"
         app:fontWeight="700"
-        app:font="@font/product_sans_bold" />
+        app:font="@font/dyslexic_bold" />
 </font-family>

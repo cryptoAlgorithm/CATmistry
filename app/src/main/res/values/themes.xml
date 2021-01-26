@@ -39,4 +39,10 @@
     <style name="SplashScreenTheme" parent="Theme.CATmistry">
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
+
+    <style name="DyslexicFont" parent="Theme.CATmistry">
+        <!-- Dyslexic font -->
+        <item name="fontFamily">@font/dyslexic</item>
+        <item name="android:fontFamily">@font/dyslexic</item>
+    </style>
 </resources>

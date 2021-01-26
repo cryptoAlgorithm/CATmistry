@@ -6,6 +6,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -68,6 +70,29 @@ class NestedSubtopicViewer : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set app theme based on preferences
+        val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        when (pref.getString(
+                "theme",
+                "auto"
+        )) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Light theme
+            else -> { // Follow system theme/unset
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                        .edit()
+                        .putString("theme", "auto")
+                        .apply() // Prevent unset state
+            }
+        }
+
+        when (pref.getBoolean("dyslexiaFont", false)) {
+            true -> setTheme(R.style.DyslexicFont)
+            false -> setTheme(R.style.Theme_CATmistry)
+        }
+
         setContentView(R.layout.activity_nested_subtopic_viewer)
 
         topAppBar.setNavigationOnClickListener {

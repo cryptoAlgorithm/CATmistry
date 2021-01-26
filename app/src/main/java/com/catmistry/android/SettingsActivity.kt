@@ -2,12 +2,11 @@ package com.catmistry.android
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.SwitchPreference
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.ListPreference
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.*
 import kotlinx.android.synthetic.main.settings_activity.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -24,6 +23,29 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set app theme based on preferences
+        val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        when (pref.getString(
+                "theme",
+                "auto"
+        )) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Light theme
+            else -> { // Follow system theme/unset
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                        .edit()
+                        .putString("theme", "auto")
+                        .apply() // Prevent unset state
+            }
+        }
+
+        when (pref.getBoolean("dyslexiaFont", false)) {
+            true -> setTheme(R.style.DyslexicFont)
+            false -> setTheme(R.style.Theme_CATmistry)
+        }
+
         setContentView(R.layout.settings_activity)
         if (savedInstanceState == null) {
             supportFragmentManager
@@ -55,6 +77,11 @@ class SettingsActivity : AppCompatActivity() {
                     }
                     true
                 }
+
+            findPreference<SwitchPreferenceCompat>("dyslexiaFont")?.setOnPreferenceClickListener {
+                requireActivity().recreate()
+                true
+            }
 
             findPreference<Preference>("shareApp")?.setOnPreferenceClickListener {
                 // Share app text

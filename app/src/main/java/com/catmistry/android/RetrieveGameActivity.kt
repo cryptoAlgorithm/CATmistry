@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,6 +75,29 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Set app theme based on preferences
+        val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        when (pref.getString(
+                "theme",
+                "auto"
+        )) {
+            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme
+            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Light theme
+            else -> { // Follow system theme/unset
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+                PreferenceManager.getDefaultSharedPreferences(applicationContext)
+                        .edit()
+                        .putString("theme", "auto")
+                        .apply() // Prevent unset state
+            }
+        }
+
+        when (pref.getBoolean("dyslexiaFont", false)) {
+            true -> setTheme(R.style.DyslexicFont)
+            false -> setTheme(R.style.Theme_CATmistry)
+        }
+
         setContentView(R.layout.activity_retrieve_game)
 
         if (intent.extras?.getDouble("difficulty") == 1.0) progressBar.visibility = View.INVISIBLE // Inf time at lowest diff

@@ -8,23 +8,42 @@
             android:defaultValue="false"
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values"
-            android:key="theme"
+            app:key="theme"
             android:title="Theme"
             app:useSimpleSummaryProvider="true"
             android:icon="@drawable/ic_round_theme_24" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/accessibility_header">
+
+        <SwitchPreferenceCompat
+            app:key="dyslexiaFont"
+            app:defaultValue="false"
+            app:icon="@drawable/ic_round_font_download_24"
+            app:title="@string/dyslexia_font" />
+
+        <SwitchPreferenceCompat
+            app:key="noMove"
+            app:defaultValue="false"
+            app:icon="@drawable/ic_round_remove_circle_24"
+            app:title="@string/low_movement_mode"
+            app:summary="@string/low_movement_desc" />
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/credits_header">
+
         <Preference
             app:icon="@drawable/ic_round_info_24"
             app:title="@string/credits_team"
             app:summary="@string/credits_team_subtitle" />
+
     </PreferenceCategory>
 
     <PreferenceCategory>
 
         <Preference
-            android:key="shareApp"
+            app:key="shareApp"
             app:icon="@drawable/ic_round_share_24"
             app:title="@string/share_app" />
 

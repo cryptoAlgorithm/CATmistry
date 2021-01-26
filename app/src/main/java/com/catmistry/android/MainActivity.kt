@@ -1,5 +1,6 @@
 package com.catmistry.android
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -46,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    lateinit var prefChangeListener: SharedPreferences.OnSharedPreferenceChangeListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_CATmistry)
 
@@ -54,7 +57,8 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true) // Enable vector in old android versions
 
         // Set app theme based on preferences
-        when (PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(
+        val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        when (pref.getString(
             "theme",
             "auto"
         )) {
@@ -67,6 +71,18 @@ class MainActivity : AppCompatActivity() {
                     .putString("theme", "auto")
                     .apply() // Prevent unset state
             }
+        }
+
+        // Define change listener
+        prefChangeListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == "dyslexiaFont") recreate()
+        }
+
+        pref.registerOnSharedPreferenceChangeListener(prefChangeListener)
+
+        when (pref.getBoolean("dyslexiaFont", false)) {
+            true -> setTheme(R.style.DyslexicFont)
+            false -> setTheme(R.style.Theme_CATmistry)
         }
 
         setContentView(R.layout.activity_main)

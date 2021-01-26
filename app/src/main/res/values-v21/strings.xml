@@ -99,6 +99,10 @@
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>
+    <string name="accessibility_header">Accessibility</string>
+    <string name="dyslexia_font">Dyslexia Font</string>
+    <string name="low_movement_mode">Reduce Motion</string>
+    <string name="low_movement_desc">Removes confetti, animations and other movement</string>
     <string name="credits_header">Credits and Others</string>
     <string name="credits_team">Programmed by Vincent Kwok</string>
     <string name="credits_team_subtitle">
