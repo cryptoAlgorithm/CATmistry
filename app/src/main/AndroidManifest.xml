@@ -14,7 +14,8 @@
         android:theme="@style/Theme.CATmistry">
         <activity android:name=".RetrieveGameActivity" />
         <activity android:name=".GasGameActivity" />
-        <activity android:name=".StartGameActivity" /> <!-- Foreground Service for playing music in background -->
+        <activity android:name=".StartGameActivity" />
+        <!-- Foreground Service for playing music in background -->
         <service
             android:name=".BgMusicPlayerService"
             android:enabled="true"
