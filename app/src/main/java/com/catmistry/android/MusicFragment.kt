@@ -88,7 +88,7 @@ class MusicFragment : Fragment() {
                                     requireActivity().startService(intent)
                                 }
                                 // Music will stop when source is changed. So start it again
-                                val playIntent =
+                                /*val playIntent =
                                     Intent(requireContext(), BgMusicPlayerService::class.java)
                                         .apply {
                                             action = "com.catmistry.android.action.PLAY"
@@ -98,7 +98,7 @@ class MusicFragment : Fragment() {
                                     requireActivity().startForegroundService(playIntent)
                                 } else {
                                     requireActivity().startService(playIntent)
-                                }
+                                }*/
                                 // PausePlay won't work as it thinks it was not playing
                                 pausePlay.setImageDrawable(
                                     ContextCompat.getDrawable(
@@ -231,7 +231,7 @@ class MusicFragment : Fragment() {
                 repeatToggle.isChecked = BgMusicPlayerService.repeat
             }
         }
-        else {
+        else if (!BgMusicPlayerService.isBuffering) {
             runOnUiThread {
                 seekBar.value = 0f
                 seekBar.isEnabled = false

@@ -66,21 +66,25 @@ class BgMusicPlayerService : Service() {
                 .addAction(notificationActionIcon, text, pendingPauseIntent)
     }
 
+    private fun startPlayer() {
+        if (isPaused) { // Safety check
+            isPaused = false
+            mediaPlayer.start()
+            isBuffering = false
+            with(NotificationManagerCompat.from(this)) {
+                // notificationId is a unique int for each notification that you must define
+                notify(1, getMyActivityNotification(songName).build())
+            }
+        }
+    }
+
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         createNotificationChannel()
 
         when (intent.action) {
             PLAY -> {
-                if (isPaused) { // Safety check
-                    isPaused = false
-                    mediaPlayer.start()
-                    isBuffering = false
-                    with(NotificationManagerCompat.from(this)) {
-                        // notificationId is a unique int for each notification that you must define
-                        notify(1, getMyActivityNotification(songName).build())
-                    }
-                }
+                startPlayer()
             }
             PAUSE -> {
                 if (isPlaying && !isPaused) { // Check if the player was actually playing
@@ -130,9 +134,14 @@ class BgMusicPlayerService : Service() {
                             stopSelf() // Close
                         }
                     }
-                    prepare() // might take long! (for buffering, etc)
+                    prepareAsync() // might take long! (for buffering, etc)
+                    setOnPreparedListener {
+                        Companion.isPlaying = true
+                        startPlayer() // Start music playing after music player is prepared
+                        start()
+                    }
                 }
-                isPlaying = true
+                isPlaying = false
                 isPaused = true
                 songName = intent.getStringExtra("songName").toString() // Store song name
             }
@@ -175,10 +184,10 @@ class BgMusicPlayerService : Service() {
             get() = currentProgress()
             set(value) = if (this::mediaPlayer.isInitialized) { mediaPlayer.seekTo((value / 100.0 * mediaPlayer.duration).toInt()) } else { /* no-op */ }
         var getElapsed: Long
-            get() = mediaPlayer.currentPosition.toLong()
+            get() = try { mediaPlayer.currentPosition.toLong() } catch (e: Exception) { 0 }
             set(_) = sinkHole()
-        var getRemaining                                  : Long
-            get() = (mediaPlayer.duration - mediaPlayer.currentPosition).toLong()
+        var getRemaining: Long
+            get() = try { (mediaPlayer.duration - mediaPlayer.currentPosition).toLong() } catch (e: Exception) { 0 }
             set(_) = sinkHole()
 
         private fun currentProgress(): Float {
