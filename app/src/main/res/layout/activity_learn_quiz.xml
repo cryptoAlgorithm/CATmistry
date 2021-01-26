@@ -130,14 +130,23 @@
                     android:layout_marginBottom="20dp"
                     app:srcCompat="@drawable/check"/> -->
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:visibility="gone"
+                    android:id="@+id/resultCorrectAnim"
+                    app:lottie_rawRes="@raw/check"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp" />
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/resultAnim"
-                    android:layout_width="300dp"
-                    android:layout_height="300dp"
-                    app:lottie_autoPlay="false"
-                    app:lottie_loop="false"
-                    android:layout_margin="20dp"/>
+                    android:visibility="gone"
+                    android:id="@+id/resultWrongAnim"
+                    app:lottie_rawRes="@raw/cross"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/resultHeader"

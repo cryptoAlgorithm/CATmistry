@@ -69,12 +69,24 @@ class LearnQuizActivity : AppCompatActivity() {
     }
     
     private fun quizResultAnim(correct: Boolean = true) {
-        resultAnim.cancelAnimation() // Stop animation if it's running
+        if (correct) {
+            resultCorrectAnim.visibility = View.VISIBLE
+            resultWrongAnim.visibility = View.GONE
+            resultCorrectAnim.cancelAnimation()
+            resultCorrectAnim.playAnimation()
+        }
+        else {
+            resultWrongAnim.visibility = View.VISIBLE
+            resultCorrectAnim.visibility = View.GONE
+            resultWrongAnim.cancelAnimation()
+            resultWrongAnim.playAnimation()
+        }
+        /*resultAnim.cancelAnimation() // Stop animation if it's running
         resultAnim.pauseAnimation()
         if (correct) resultAnim.setAnimation(R.raw.check)
         else resultAnim.setAnimation(R.raw.cross)
         resultAnim.resumeAnimation()
-        resultAnim.playAnimation()
+        resultAnim.playAnimation()*/
     }
 
     private fun showNextQn() {
