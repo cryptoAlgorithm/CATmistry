@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/appearance_header">
+    <PreferenceCategory app:title="@string/appearance_header">
         <ListPreference
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -9,12 +9,28 @@
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values"
             app:key="theme"
-            android:title="Theme"
+            app:title="Theme"
             app:useSimpleSummaryProvider="true"
-            android:icon="@drawable/ic_round_theme_24" />
+            app:icon="@drawable/ic_round_theme_24" />
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/accessibility_header">
+    <PreferenceCategory app:title="@string/stats_header">
+
+        <Preference
+            app:icon="@drawable/ic_round_library_books_24"
+            app:title="@string/quiz_stats" />
+
+        <Preference
+            app:icon="@drawable/ic_baseline_videogame_asset_24"
+            app:title="@string/game_stats" />
+
+        <Preference
+            app:icon="@drawable/ic_round_refresh_24"
+            app:title="@string/reset_stats" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/accessibility_header">
 
         <SwitchPreferenceCompat
             app:key="dyslexiaFont"
@@ -31,7 +47,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="@string/credits_header">
+    <PreferenceCategory app:title="@string/credits_header">
 
         <Preference
             app:icon="@drawable/ic_round_info_24"

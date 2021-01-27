@@ -99,6 +99,10 @@
     <!-- Settings page -->
     <string name="settings_header">Settings</string>
     <string name="appearance_header">App Appearance</string>
+    <string name="stats_header">Statistics</string>
+    <string name="quiz_stats">Quiz attempts: 0</string>
+    <string name="game_stats">Game attempts: 0</string>
+    <string name="reset_stats">Reset all statistics</string>
     <string name="accessibility_header">Accessibility</string>
     <string name="dyslexia_font">Dyslexia Font</string>
     <string name="low_movement_mode">Reduce Motion</string>
