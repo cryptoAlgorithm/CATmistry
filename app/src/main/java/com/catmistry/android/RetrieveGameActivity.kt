@@ -5,6 +5,7 @@ import android.animation.ValueAnimator
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_retrieve_game.*
+import kotlinx.android.synthetic.main.activity_retrieve_game.progressBar
 import kotlinx.android.synthetic.main.table_thin_row.view.*
 
 class SeparationGameAdapter(
@@ -72,6 +74,51 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
     private var selectedSubstance = -1
     private var waveProg = 50
     private var totalTime = 0.0
+    private var timeLeft: Double? = null
+    private var currentTimerThread: Thread? = null
+    private var continueTimer = false
+
+    // Timer code
+    private fun startTimer(totalTime: Double) {
+        if (totalTime == 0.0) return // Don't start timer if time is 0
+        if (timeLeft == null) timeLeft = totalTime
+
+        val runnable = Runnable {
+            while (continueTimer && !Thread.interrupted()) {
+                val newProg = ((timeLeft!! / totalTime) * 100.0).toInt()
+
+                runOnUiThread {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        progressBar.setProgress(newProg, true)
+                    }
+                    else progressBar.progress = newProg
+                }
+
+                if (timeLeft!! <= 0.0) {
+                    runOnUiThread {
+                        // Stuff that updates the UI
+                        // Android how I hate you
+                        selectedSubstance = 0
+                        itemClicked(separationMethods.size + 1) // Will always be wrong
+                    }
+
+                    timeLeft = null
+                    break
+                }
+
+                timeLeft = timeLeft!! - 50
+
+                try {
+                    Thread.sleep(50)
+                }
+                catch(e: Exception) {}
+            }
+
+            continueTimer = false
+        }
+        currentTimerThread = Thread(runnable)
+        currentTimerThread?.start()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -174,6 +221,8 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
                 }
 
                 checkSeqLen()
+                continueTimer = true
+                startTimer(totalTime)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -260,6 +309,11 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
             Snackbar.make(sepMethods, R.string.choose_sep_substance, Snackbar.LENGTH_SHORT).show()
             return
         }
+
+        continueTimer = false
+        currentTimerThread?.interrupt()
+        timeLeft = null
+
         // Check if ans is correct
         if (sepAns[subSeq[selectedSubstance]] == itemID) waveProg -= 10
         else {
@@ -295,6 +349,10 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
             waveProg >= 80 -> changeCupBg(Color.rgb(229, 57, 53)) // Red   - bad
             else -> changeCupBg(Color.rgb(3, 155, 229)) // Blue - normal
         }
+
+        // Resume timer
+        continueTimer = true
+        startTimer(totalTime)
     }
 
     override fun rowClicked(itemID: Int) {
