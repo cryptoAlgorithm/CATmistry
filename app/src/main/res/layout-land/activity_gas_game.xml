@@ -367,7 +367,7 @@
                                 android:id="@+id/submitGasAns"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/submit_gas" />
+                                android:text="@string/submit_text" />
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 

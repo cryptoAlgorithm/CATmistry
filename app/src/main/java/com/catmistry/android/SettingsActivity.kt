@@ -111,7 +111,7 @@ class SettingsActivity : AppCompatActivity() {
                         .setTitle(resources.getString(R.string.devtools_pwd_title))
                         .setMessage(R.string.devtools_content)
                         .setView(container)
-                        .setNeutralButton(resources.getString(R.string.back_action)) { dialog, which ->
+                        .setNeutralButton(resources.getString(android.R.string.cancel)) { dialog, which ->
                             // Respond to neutral button press
                         }
                         .setPositiveButton(resources.getString(android.R.string.ok)) { dialog, which ->

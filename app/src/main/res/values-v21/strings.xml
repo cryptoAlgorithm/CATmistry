@@ -2,6 +2,8 @@
     <!-- Generic stuff -->
     <string name="data_loading">Loading data…</string>
     <string name="error_load">Failed to load data</string>
+    <!-- Gas game -->
+    <string name="submit_text">Submit</string>
 
     <string name="app_name">CATmistry</string>
     <string name="appbar_settings">Settings</string>
@@ -50,35 +52,13 @@
     <string name="select_difficulty">Select level difficulty</string>
     <string name="game_correct">You\'ve got it correct! Keep up the good work! There %1$s remaining.</string>
     <string name="game_wrong">Whoops, that\'s the wrong answer. Keep trying! There %1$s remaining.</string>
-    <!-- Gas game -->
-    <string name="submit_gas">Submit</string>
     <!-- Separation methods game -->
     <string name="choose_sep_substance">Choose a substance above first</string>
     <string name="sep_method_instruction">Read the description below and click on the substances to choose a separation method.</string>
-    <!-- <string-array name="sep_substances">
-        <item>Gasoline - Lower boiling point than the other substances</item>
-        <item>Sand - Insoluble in water</item>
-        <item>Salt - Soluble in water</item>
-        <item>Cobalt - Magnetic</item>
-        <item>Sugar - Soluble in water</item>
-        <item>Rocks - Insoluble in water</item>
-        <item>Aluminium - Magnetic</item>
-        <item>Oil - Insoluble and floats on water</item>
-        <item>Iron - Magnetic</item>
-    </string-array>
-    <string-array name="substance_sep_method">
-        <item>Distillation</item>
-        <item>Filtration</item>
-        <item>Evaporation</item>
-        <item>Magnetism</item>
-        <item>Crystallisation</item>
-        <item>Filtration</item>
-        <item>Magnetism</item>
-        <item>Distillation</item>
-        <item>Magnetism</item>
-    </string-array> -->
     <string name="sep_substance_template">Separation method for %1$s</string>
     <string name="sep_game_correct">That\'s the correct answer!</string>
+    <!-- pH game -->
+    <string name="ph_uni_indicator">Universal Indicator</string>
 
     <!-- Game result page -->
     <plurals name="game_end_fail">
@@ -122,4 +102,14 @@
     </string>
     <string name="share_app">Share CATmistry with others!</string>
     <string name="share_app_text">Check out CATmistry on the Galaxy Store now!</string>
+
+    <!-- DevTools -->
+    <string name="devtools_header">CATmistry DevTools</string>
+    <string name="devtools_pwd_title">Developer Tools</string>
+    <string name="devtools_pwd_hash">$s0$d1018$p6P2LLlgYKhAxKGRP58VDg==$rbGYifk0oLWaF/FRMhjGPniKsMhghnOBST7QW5fuKyU=</string>
+    <string name="calc_hash">Calculating hash, please wait for up to 1 minute.</string>
+    <string name="devtools_pwd_no">Wrong password</string>
+    <string name="devtools_pwd_yes">Opening DevTools…</string>
+    <string name="devtools_content">If you\'re unsure why this dialog appeared, press Cancel.</string>
+    <string name="devtools_pwd_label">Password</string>
 </resources>

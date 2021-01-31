@@ -58,7 +58,8 @@ class StartGameActivity : AppCompatActivity() {
                     .putExtra("bottomImg", intent.extras?.getString("gameIcon"))
                     .putExtra("difficulty", difficultySlider.value.toDouble()))
                 1 -> startActivity(Intent(this, RetrieveGameActivity::class.java)
-                    .putExtra("bottomImg", intent.extras?.getString("gameIcon"))
+                    .putExtra("difficulty", difficultySlider.value.toDouble()))
+                2 -> startActivity(Intent(this, PhGameActivity::class.java)
                     .putExtra("difficulty", difficultySlider.value.toDouble()))
                 else -> Snackbar.make(it, "No game activity for this item", Snackbar.LENGTH_SHORT).show()
             }

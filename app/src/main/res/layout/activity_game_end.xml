@@ -9,13 +9,15 @@
     tools:context=".GameEndActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
+            android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceHeadline5"
-            android:text="This is skam"
+            android:text="@string/game_end_pass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhGameActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameTopBg"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:layout_height="wrap_content">
+
+            <com.catmistry.android.SquareImageView
+                android:id="@+id/gameBottomImg"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameMidBg"
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameEndBg"
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:trackThickness="10dp"
+                android:contentDescription="@string/gameTimer_desc"
+                app:trackCornerRadius="10dp" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/subOne"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="8dp"
+                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="10dp"
+                                app:srcCompat="@drawable/limewater"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/subTwo"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="8dp"
+                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="10dp"
+                                app:srcCompat="@drawable/lighted_splint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/subThree"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="8dp"
+                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="10dp"
+                                app:srcCompat="@drawable/glowing_splint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/subFour"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:checkable="true"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/stroke_color"
+                            app:cardElevation="8dp"
+                            android:layout_width="0dp"
+                            android:layout_margin="3dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="7dp"
+                            android:layout_height="wrap_content">
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_margin="10dp"
+                                app:srcCompat="@drawable/litmus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:text="@string/ph_uni_indicator"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:text="@string/submit_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:orientation="vertical"
+                    android:layout_weight="5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.card.MaterialCardView
+                        app:cardElevation="12dp"
+                        app:cardCornerRadius="7dp"
+                        app:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <com.catmistry.android.SquareImageView
+                                android:layout_gravity="center"
+                                android:id="@+id/phBeaker"
+                                app:srcCompat="@drawable/gas_tank"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent" />
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <Button
+                        android:layout_gravity="center"
+                        android:id="@+id/endGame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/end_game"
+                        style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

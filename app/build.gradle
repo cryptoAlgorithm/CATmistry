@@ -15,8 +15,8 @@ android {
         applicationId "com.catmistry.android"
         minSdkVersion 18
         targetSdkVersion 30
-        versionCode 50
-        versionName "0.4.13"
+        versionCode 51
+        versionName "0.4.15"
 
         multiDexEnabled true // Enable MultiDex
 
