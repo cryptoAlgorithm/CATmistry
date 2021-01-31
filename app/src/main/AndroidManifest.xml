@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CATmistry">
+        <activity android:name=".GameEndActivity"></activity>
+        <activity android:name=".DevToolsActivity" />
         <activity android:name=".RetrieveGameActivity" />
         <activity android:name=".GasGameActivity" />
-        <activity android:name=".StartGameActivity" />
-        <!-- Foreground Service for playing music in background -->
+        <activity android:name=".StartGameActivity" /> <!-- Foreground Service for playing music in background -->
         <service
             android:name=".BgMusicPlayerService"
             android:enabled="true"
@@ -31,9 +32,9 @@
             android:name=".SettingsActivity"
             android:label="@string/settings_header" />
         <activity
-            android:theme="@style/SplashScreenTheme"
             android:name=".MainActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

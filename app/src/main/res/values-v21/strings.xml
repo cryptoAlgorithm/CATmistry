@@ -80,6 +80,14 @@
     <string name="sep_substance_template">Separation method for %1$s</string>
     <string name="sep_game_correct">That\'s the correct answer!</string>
 
+    <!-- Game result page -->
+    <plurals name="game_end_fail">
+        <item quantity="one">You got %d question right. Revise %1$s and reattempt this quiz. You can do it!</item>
+        <item quantity="other">You got %d questions right. Revise %1$s and reattempt this quiz. You can do it!</item>
+    </plurals>
+    <string name="game_end_pass">You got %1$d questions right, and passed with flying colors! Congrats!</string>
+    <string name="game_end_back">Go home</string>
+
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>
     <string name="slider_end">pH 14</string>

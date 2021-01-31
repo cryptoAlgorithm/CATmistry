@@ -1,13 +1,25 @@
 package com.catmistry.android
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
-import android.preference.SwitchPreference
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
 import androidx.preference.*
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textview.MaterialTextView
+import com.lambdaworks.crypto.SCryptUtil
+import kotlinx.android.synthetic.main.password_dialog_layout.*
 import kotlinx.android.synthetic.main.settings_activity.*
+
 
 class SettingsActivity : AppCompatActivity() {
     // Scam android function
@@ -27,8 +39,8 @@ class SettingsActivity : AppCompatActivity() {
         // Set app theme based on preferences
         val pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         when (pref.getString(
-                "theme",
-                "auto"
+            "theme",
+            "auto"
         )) {
             "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES) // Dark theme
             "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) // Light theme
@@ -83,6 +95,46 @@ class SettingsActivity : AppCompatActivity() {
                 true
             }
 
+            var devToolsClickedTimes = 0
+
+            findPreference<Preference>("devMode")?.setOnPreferenceClickListener {
+                // Must click 5 times in 1 second
+                devToolsClickedTimes++
+                // Check if the button has been clicked 5 times
+                if (devToolsClickedTimes >= 5) {
+                    devToolsClickedTimes = 0 // Reset counter
+
+                    val container = layoutInflater.inflate(R.layout.password_dialog_layout, null)
+
+                    // Build password dialog
+                    MaterialAlertDialogBuilder(requireActivity())
+                        .setTitle(resources.getString(R.string.devtools_pwd_title))
+                        .setMessage(R.string.devtools_content)
+                        .setView(container)
+                        .setNeutralButton(resources.getString(R.string.back_action)) { dialog, which ->
+                            // Respond to neutral button press
+                        }
+                        .setPositiveButton(resources.getString(android.R.string.ok)) { dialog, which ->
+                            // Respond to positive button press
+                            Thread {
+                                val enteredPwd = container.findViewById<TextInputLayout>(R.id.devtoolsPwdField).editText?.text.toString()
+                                Toast.makeText(requireActivity(), R.string.calc_hash, Toast.LENGTH_LONG).show()
+                                if (SCryptUtil.check(enteredPwd, requireActivity().getString(R.string.devtools_pwd_hash))) {
+                                    startActivity(Intent(requireActivity(), DevToolsActivity::class.java))
+                                    Toast.makeText(requireActivity(), R.string.devtools_pwd_yes, Toast.LENGTH_SHORT).show()
+                                }
+                                else Toast.makeText(requireActivity(), R.string.devtools_pwd_no, Toast.LENGTH_SHORT).show()
+                            }.start()
+                        }
+                        .show()
+                }
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    devToolsClickedTimes--
+                }, 2200)
+                true
+            }
+
             findPreference<Preference>("shareApp")?.setOnPreferenceClickListener {
                 // Share app text
 
@@ -92,7 +144,7 @@ class SettingsActivity : AppCompatActivity() {
                     type = "text/plain"
                 }
 
-                startActivity(Intent.createChooser(sendIntent, null))
+                startActivity(Intent.createChooser(sendIntent, getString(R.string.share_app)))
                 true
             }
         }

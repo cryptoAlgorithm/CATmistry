@@ -2,6 +2,7 @@
     <!-- Generic stuff -->
     <string name="data_loading">Loading data…</string>
     <string name="error_load">Failed to load data</string>
+    <string name="back_action">Back</string>
 
     <string name="app_name">CATmistry</string>
     <string name="appbar_settings">Settings</string>
@@ -80,6 +81,14 @@
     <string name="sep_substance_template">Separation method for %1$s</string>
     <string name="sep_game_correct">That\'s the correct answer!</string>
 
+    <!-- Game result page -->
+    <plurals name="game_end_fail">
+        <item quantity="one">You got %d question right. Revise %1$s and reattempt this quiz. You can do it!</item>
+        <item quantity="other">You got %d questions right. Revise %1$s and reattempt this quiz. You can do it!</item>
+    </plurals>
+    <string name="game_end_pass">You got %1$d questions right, and passed with flying colors! Congrats!</string>
+    <string name="game_end_back">Go home</string>
+
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>
     <string name="slider_end">pH 14</string>
@@ -104,6 +113,13 @@
     <string name="game_stats">Game attempts: 0</string>
     <string name="reset_stats">Reset all statistics</string>
     <string name="accessibility_header">Accessibility</string>
+    <string name="devtools_pwd_title">Developer Tools</string>
+    <string name="devtools_pwd_hash">$s0$d1018$p6P2LLlgYKhAxKGRP58VDg==$rbGYifk0oLWaF/FRMhjGPniKsMhghnOBST7QW5fuKyU=</string>
+    <string name="calc_hash">Calculating hash, please wait for up to 1 minute.</string>
+    <string name="devtools_pwd_no">Wrong password</string>
+    <string name="devtools_pwd_yes">Opening DevTools…</string>
+    <string name="devtools_content">If you\'re unsure why this dialog appeared, press Back to exit.</string>
+    <string name="devtools_pwd_label">Password</string>
     <string name="dyslexia_font">Dyslexia Font</string>
     <string name="low_movement_mode">Reduce Motion</string>
     <string name="low_movement_desc">Removes confetti, animations and other movement</string>
