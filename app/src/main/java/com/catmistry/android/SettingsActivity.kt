@@ -116,15 +116,17 @@ class SettingsActivity : AppCompatActivity() {
                         }
                         .setPositiveButton(resources.getString(android.R.string.ok)) { dialog, which ->
                             // Respond to positive button press
-                            Thread {
-                                val enteredPwd = container.findViewById<TextInputLayout>(R.id.devtoolsPwdField).editText?.text.toString()
-                                Toast.makeText(requireActivity(), R.string.calc_hash, Toast.LENGTH_LONG).show()
-                                if (SCryptUtil.check(enteredPwd, requireActivity().getString(R.string.devtools_pwd_hash))) {
-                                    startActivity(Intent(requireActivity(), DevToolsActivity::class.java))
-                                    Toast.makeText(requireActivity(), R.string.devtools_pwd_yes, Toast.LENGTH_SHORT).show()
-                                }
-                                else Toast.makeText(requireActivity(), R.string.devtools_pwd_no, Toast.LENGTH_SHORT).show()
-                            }.start()
+                            runOnUiThread {
+                                Thread {
+                                    val enteredPwd = container.findViewById<TextInputLayout>(R.id.devtoolsPwdField).editText?.text.toString()
+                                    runOnUiThread { Toast.makeText(requireActivity(), R.string.calc_hash, Toast.LENGTH_LONG).show() }
+                                    if (SCryptUtil.check(enteredPwd, requireActivity().getString(R.string.devtools_pwd_hash))) {
+                                        startActivity(Intent(requireActivity(), DevToolsActivity::class.java))
+                                        runOnUiThread { Toast.makeText(requireActivity(), R.string.devtools_pwd_yes, Toast.LENGTH_SHORT).show() }
+                                    }
+                                    else runOnUiThread { Toast.makeText(requireActivity(), R.string.devtools_pwd_no, Toast.LENGTH_SHORT).show() }
+                                }.start()
+                            }
                         }
                         .show()
                 }
@@ -147,6 +149,12 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(sendIntent, getString(R.string.share_app)))
                 true
             }
+        }
+
+        private fun Fragment?.runOnUiThread(action: () -> Unit) {
+            this ?: return
+            if (!isAdded) return // Fragment not attached to an Activity
+            activity?.runOnUiThread(action)
         }
     }
 }
