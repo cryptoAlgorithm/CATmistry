@@ -84,10 +84,11 @@
                     android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
-                        android:layout_margin="8dp"
-                        app:srcCompat="@drawable/limewater"
+                        android:id="@+id/subOneImg"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:srcCompat="@drawable/limewater" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -104,6 +105,7 @@
                     android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
+                        android:id="@+id/subTwoImg"
                         android:layout_margin="8dp"
                         app:srcCompat="@drawable/lighted_splint"
                         android:layout_width="match_parent"
@@ -124,6 +126,7 @@
                     android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
+                        android:id="@+id/subThreeImg"
                         android:layout_margin="8dp"
                         app:srcCompat="@drawable/glowing_splint"
                         android:layout_width="match_parent"
@@ -144,6 +147,7 @@
                     android:layout_height="wrap_content">
 
                     <com.catmistry.android.SquareImageView
+                        android:id="@+id/subFourImg"
                         android:layout_margin="8dp"
                         app:srcCompat="@drawable/litmus"
                         android:layout_width="match_parent"

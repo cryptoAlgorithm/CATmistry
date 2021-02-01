@@ -95,6 +95,7 @@
                             android:layout_height="wrap_content">
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/subOneImg"
                                 android:layout_margin="10dp"
                                 app:srcCompat="@drawable/limewater"
                                 android:layout_width="match_parent"
@@ -117,6 +118,7 @@
                             android:layout_height="wrap_content">
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/subTwoImg"
                                 android:layout_margin="10dp"
                                 app:srcCompat="@drawable/lighted_splint"
                                 android:layout_width="match_parent"
@@ -146,6 +148,7 @@
                             android:layout_height="wrap_content">
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/subThreeImg"
                                 android:layout_margin="10dp"
                                 app:srcCompat="@drawable/glowing_splint"
                                 android:layout_width="match_parent"
@@ -168,6 +171,7 @@
                             android:layout_height="wrap_content">
 
                             <com.catmistry.android.SquareImageView
+                                android:id="@+id/subFourImg"
                                 android:layout_margin="10dp"
                                 app:srcCompat="@drawable/litmus"
                                 android:layout_width="match_parent"
@@ -183,6 +187,7 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/uniIndicatorSw"
                             android:text="@string/ph_uni_indicator"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
