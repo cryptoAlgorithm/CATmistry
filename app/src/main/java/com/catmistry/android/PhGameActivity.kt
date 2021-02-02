@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.activity_ph_game.*
 
 class PhGameActivity : AppCompatActivity() {
     private var difficulty: Double? = null
+    private var beakerPH: Int = 0
+    private val subPhArr: ArrayList<Int> = ArrayList()
 
     private fun clrSubChecks() {
         subOne.isChecked = false
@@ -16,7 +18,7 @@ class PhGameActivity : AppCompatActivity() {
         subFour.isChecked = false
     }
 
-    private fun refreshBeaker(beakerPH: Int, phArr: ArrayList<Int>) {
+    private fun refreshBeaker() {
         if (difficulty == 1.0) {
             beakerPhHint.text = getString(R.string.beaker_ph, beakerPH.toString())
             beakerPhHint.visibility = View.VISIBLE
@@ -25,19 +27,19 @@ class PhGameActivity : AppCompatActivity() {
         if (uniIndicatorSw.isChecked) {
             when {
                 subOne.isChecked -> phBeaker.setImageResource(resources.getIdentifier(
-                        "monster_ph${phArr[0]}",
+                        "monster_ph${subPhArr[0]}",
                         "drawable", packageName
                 ))
                 subTwo.isChecked -> phBeaker.setImageResource(resources.getIdentifier(
-                        "monster_ph${phArr[1]}",
+                        "monster_ph${subPhArr[1]}",
                         "drawable", packageName
                 ))
                 subThree.isChecked -> phBeaker.setImageResource(resources.getIdentifier(
-                        "monster_ph${phArr[2]}",
+                        "monster_ph${subPhArr[2]}",
                         "drawable", packageName
                 ))
                 subFour.isChecked -> phBeaker.setImageResource(resources.getIdentifier(
-                        "monster_ph${phArr[3]}",
+                        "monster_ph${subPhArr[3]}",
                         "drawable", packageName
                 ))
                 else -> phBeaker.setImageResource(resources.getIdentifier(
@@ -53,30 +55,13 @@ class PhGameActivity : AppCompatActivity() {
         submitPhAns.isEnabled = (subOne.isChecked || subTwo.isChecked || subThree.isChecked || subFour.isChecked)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        var beakerPH: Int
-        val subPhArr: ArrayList<Int> = ArrayList()
-
-        difficulty = intent.extras?.getDouble("difficulty")
-
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ph_game)
+    private fun nextQn() {
+        // Reset array
+        subPhArr.clear() // Delete all elements
 
         // Generate a random beaker pH
         do { beakerPH = (1 until 15).random() }
         while (beakerPH == 7) // Ensure beaker pH is never 7
-
-        // Onclick listeners
-        endGame.setOnClickListener {
-            onBackPressed()
-        }
-
-        // Add/remove universal pH
-        uniIndicatorSw.setOnCheckedChangeListener { _, _ ->
-            refreshBeaker(beakerPH, subPhArr)
-        }
-
-        refreshBeaker(beakerPH, subPhArr) // Init beaker for the first time
 
         // Set substance images
         // First generate random pHs
@@ -87,55 +72,93 @@ class PhGameActivity : AppCompatActivity() {
             subPhArr.add(temp)
         }
 
+        refreshBeaker() // Update beaker image
+
         // Then set the respective substance images
         subOneImg.setImageResource(resources.getIdentifier(
-            "ph_${subPhArr[0]}",
-            "drawable", packageName
+                "ph_${subPhArr[0]}",
+                "drawable", packageName
         ))
         subTwoImg.setImageResource(resources.getIdentifier(
-            "ph_${subPhArr[1]}",
-            "drawable", packageName
+                "ph_${subPhArr[1]}",
+                "drawable", packageName
         ))
         subThreeImg.setImageResource(resources.getIdentifier(
-            "ph_${subPhArr[2]}",
-            "drawable", packageName
+                "ph_${subPhArr[2]}",
+                "drawable", packageName
         ))
         subFourImg.setImageResource(resources.getIdentifier(
-            "ph_${subPhArr[3]}",
-            "drawable", packageName
+                "ph_${subPhArr[3]}",
+                "drawable", packageName
         ))
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        difficulty = intent.extras?.getDouble("difficulty")
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_ph_game)
+
+        // Init for the first time
+        nextQn()
+
+        // Onclick listeners
+        endGame.setOnClickListener {
+            onBackPressed()
+        }
+
+        // Add/remove universal pH
+        uniIndicatorSw.setOnCheckedChangeListener { _, _ ->
+            refreshBeaker()
+        }
+
+        // Submit button onclick listener
+        submitPhAns.setOnClickListener {
+            // Check if ans is correct
+            val selectedPh = when {
+                subOne.isChecked -> subPhArr[0]
+                subTwo.isChecked -> subPhArr[1]
+                subThree.isChecked -> subPhArr[2]
+                subFour.isChecked -> subPhArr[3]
+                else -> 7 // Always wrong
+            }
+            if ((selectedPh < 7 && beakerPH > 7) || (selectedPh > 7 && beakerPH < 7))
+                Snackbar.make(it, R.string.ph_correct, Snackbar.LENGTH_SHORT).show() // Correct
+            else Snackbar.make(it, R.string.ph_wrong, Snackbar.LENGTH_SHORT).show()  // Wrong
+            nextQn()
+        }
 
         // Substance check handlers
         subOne.setOnClickListener {
             val prevState = subOne.isChecked
             clrSubChecks()
-            if (difficulty == 1.0) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[0].toString()), Snackbar.LENGTH_LONG).show()
+            if (difficulty == 1.0 && !prevState) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[0].toString()), Snackbar.LENGTH_SHORT).show()
             subOne.isChecked = !prevState
-            refreshBeaker(beakerPH, subPhArr)
+            refreshBeaker()
         }
         subTwo.setOnClickListener {
             val prevState = subTwo.isChecked
             clrSubChecks()
-            if (difficulty == 1.0) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[1].toString()), Snackbar.LENGTH_LONG).show()
+            if (difficulty == 1.0 && !prevState) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[1].toString()), Snackbar.LENGTH_SHORT).show()
             subTwo.isChecked = true
             subTwo.isChecked = !prevState
-            refreshBeaker(beakerPH, subPhArr)
+            refreshBeaker()
         }
         subThree.setOnClickListener {
             val prevState = subThree.isChecked
             clrSubChecks()
-            if (difficulty == 1.0) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[2].toString()), Snackbar.LENGTH_LONG).show()
+            if (difficulty == 1.0 && !prevState) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[2].toString()), Snackbar.LENGTH_SHORT).show()
             subThree.isChecked = true
             subThree.isChecked = !prevState
-            refreshBeaker(beakerPH, subPhArr)
+            refreshBeaker()
         }
         subFour.setOnClickListener {
             val prevState = subFour.isChecked
             clrSubChecks()
-            if (difficulty == 1.0) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[3].toString()), Snackbar.LENGTH_LONG).show()
+            if (difficulty == 1.0 && !prevState) Snackbar.make(it, getString(R.string.sub_ph_hint, subPhArr[3].toString()), Snackbar.LENGTH_SHORT).show()
             subFour.isChecked = true
             subFour.isChecked = !prevState
-            refreshBeaker(beakerPH, subPhArr)
+            refreshBeaker()
         }
     }
 }

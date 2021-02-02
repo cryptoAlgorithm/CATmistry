@@ -61,6 +61,8 @@
     <string name="ph_uni_indicator">Universal Indicator</string>
     <string name="beaker_ph">Beaker pH: %1$s</string>
     <string name="sub_ph_hint">pH of selected substance: %1$s</string>
+    <string name="ph_wrong">Whoops! That\'s the wrong answer. Try harder next time!</string>
+    <string name="ph_correct">You got it right! Great job!</string>
 
     <!-- Game result page -->
     <plurals name="game_end_fail">
