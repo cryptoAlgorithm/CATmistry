@@ -59,6 +59,8 @@
     <string name="sep_game_correct">That\'s the correct answer!</string>
     <!-- pH game -->
     <string name="ph_uni_indicator">Universal Indicator</string>
+    <string name="beaker_ph">Beaker pH: %1$s</string>
+    <string name="sub_ph_hint">pH of selected substance: %1$s</string>
 
     <!-- Game result page -->
     <plurals name="game_end_fail">

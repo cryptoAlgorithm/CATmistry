@@ -193,6 +193,7 @@
                             android:layout_height="wrap_content" />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/submitPhAns"
                             android:text="@string/submit_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -220,10 +221,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
+                            <com.google.android.material.textview.MaterialTextView
+                            android:visibility="gone"
+                            android:id="@+id/beakerPhHint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:textAppearance="?attr/textAppearanceHeadline6" />
+
                             <com.catmistry.android.SquareImageView
                                 android:layout_gravity="center"
                                 android:id="@+id/phBeaker"
-                                app:srcCompat="@drawable/gas_tank"
+                                app:srcCompat="@drawable/monster_regular"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent" />
 
