@@ -59,6 +59,12 @@ class PhGameActivity : AppCompatActivity() {
         // Reset array
         subPhArr.clear() // Delete all elements
 
+        // Reset UI elements
+        subOne.isChecked = false
+        subTwo.isChecked = false
+        subThree.isChecked = false
+        subFour.isChecked = false
+
         // Generate a random beaker pH
         do { beakerPH = (1 until 15).random() }
         while (beakerPH == 7) // Ensure beaker pH is never 7
