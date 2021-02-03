@@ -61,6 +61,18 @@
     <string name="ph_uni_indicator">Universal Indicator</string>
     <string name="beaker_ph">Beaker pH: %1$s</string>
     <string name="sub_ph_hint">pH of selected substance: %1$s</string>
+    <string name="ph_wrong">Whoops! That\'s the wrong answer. Try harder next time!</string>
+    <string name="ph_correct">You got it right! Great job!</string>
+    <!-- pH table game -->
+    <string name="pTable_sub_grp">Substance Group:</string>
+    <string name="pTable_sub_type">Substance Type:</string>
+    <string name="pTable_grp1">1</string>
+    <string name="pTable_grp2">2</string>
+    <string name="pTable_grp3">3</string>
+    <string name="pTable_grp4">4</string>
+    <string name="pTable_sub_metal">Metal</string>
+    <string name="pTable_sub_tranMetal">Transition Metal</string>
+    <string name="pTable_sub_nonMetal">Non-Metal</string>
 
     <!-- Game result page -->
     <plurals name="game_end_fail">

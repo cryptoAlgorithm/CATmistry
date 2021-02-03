@@ -23,10 +23,10 @@
         <item name="fontFamily">@font/product_sans</item>
         <item name="android:fontFamily">@font/product_sans</item>
         <!-- Question button backgrounds -->
-        <item name="quizOneBg">#467377</item>
-        <item name="quizTwoBg">#7E744B</item>
-        <item name="quizThreeBg">#7D7263</item>
-        <item name="quizFourBg">#587359</item>
+        <item name="quizOneBg">#62A0A5</item>
+        <item name="quizTwoBg">#B0A168</item>
+        <item name="quizThreeBg">#B5A792</item>
+        <item name="quizFourBg">#91BA93</item>
         <item name="quizQnBg">#607C79</item>
         <!-- Card background color -->
         <item name="cardBackgroundColor">#222222</item>

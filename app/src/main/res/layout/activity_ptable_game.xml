@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhGameActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameTopBg"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:gravity="center_horizontal|bottom"
+            android:layout_height="wrap_content">
+
+            <com.catmistry.android.SquareImageView
+                android:id="@+id/gameBottomImg"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameMidBg"
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:background="?attr/gameEndBg"
+            android:layout_width="match_parent"
+            android:layout_height="65dp">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.core.widget.NestedScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:gravity="center"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:trackThickness="10dp"
+                android:contentDescription="@string/gameTimer_desc"
+                app:trackCornerRadius="10dp" />
+
+            <!-- Gas test options -->
+            <com.google.android.material.card.MaterialCardView
+                app:cardElevation="12dp"
+                app:cardCornerRadius="7dp"
+                app:cardUseCompatPadding="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/subDesc"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceHeadline5"
+                    android:layout_margin="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_marginTop="-20dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="12dp"
+                app:cardCornerRadius="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pTable_sub_grp"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                    <!-- Row of group buttons -->
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        app:singleSelection="true"
+                        android:id="@+id/grpToggles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:enabled="false"
+                            android:id="@+id/subGrpOne"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="3dp"
+                            android:layout_weight="1"
+                            android:text="@string/pTable_grp1"
+                            app:backgroundTint="?attr/quizOneBg" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:enabled="false"
+                            android:id="@+id/subGrpTwo"
+                            app:backgroundTint="?attr/quizTwoBg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/pTable_grp2"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_weight="1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:enabled="false"
+                            android:id="@+id/subGrpThree"
+                            app:backgroundTint="?attr/quizThreeBg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:text="@string/pTable_grp3"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_weight="1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:enabled="false"
+                            android:id="@+id/subGrpFour"
+                            app:backgroundTint="?attr/quizFourBg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="3dp"
+                            android:text="@string/pTable_grp4"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_weight="1" />
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pTable_sub_grp"
+                        android:textAlignment="center"
+                        android:textAppearance="?attr/textAppearanceHeadline6" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:enabled="false"
+                        android:id="@+id/subTypeMetal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pTable_sub_metal" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:enabled="false"
+                        android:id="@+id/subTypeTMetal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pTable_sub_tranMetal" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:enabled="false"
+                        android:id="@+id/subTypeNMetal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pTable_sub_nonMetal" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <Button
+                android:layout_marginTop="-20dp"
+                android:id="@+id/endGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_game"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

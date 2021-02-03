@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CATmistry">
-        <activity android:name=".PhGameActivity"></activity>
+        <activity android:name=".PTableGameActivity"></activity>
+        <activity android:name=".PhGameActivity" />
         <activity android:name=".GameEndActivity" />
         <activity android:name=".DevToolsActivity" />
         <activity android:name=".RetrieveGameActivity" />

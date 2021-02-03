@@ -52,6 +52,11 @@ data class GasGameArray(
     var thirdGasIsPositive: List<Boolean>? = null,
     var thirdGasTank: String? = "Database Error",
 )
+data class PTableGameArray(
+    var desc: String? = "No Description",
+    var grp: Int? = 0,
+    var type: Int? = 0
+)
 
 // Interfaces
 interface RecyclerViewClickListener {
