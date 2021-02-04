@@ -75,12 +75,10 @@
     <string name="pTable_sub_nonMetal">Non-Metal</string>
 
     <!-- Game result page -->
-    <plurals name="game_end_fail">
-        <item quantity="one">You got %d question right. Revise %1$s and reattempt this quiz. You can do it!</item>
-        <item quantity="other">You got %d questions right. Revise %1$s and reattempt this quiz. You can do it!</item>
-    </plurals>
-    <string name="game_end_pass">You got %1$d questions right, and passed with flying colors! Congrats!</string>
     <string name="game_end_back">Go home</string>
+    <string name="game_won">Congratulations! You have won the game! Good job!</string>
+    <string name="game_lost">You have lost the game, but don\'t be discouraged. Revise the learning topics and reattempt this game!</string>
+    <string name="game_end_confetti">Give me confetti!</string>
 
     <!-- pH slider -->
     <string name="slider_start">pH 1</string>
@@ -88,7 +86,7 @@
     <string name="pH_currentDesc">Current pH: %1$s\n%2$s</string>
 
     <!-- Music player -->
-    <string name="music_header">Music</string>
+    <string name="music_header">Music 🎵</string>
     <string name="music_nav_title">Music</string>
     <string name="duration_placeholder">--:--</string>
     <string name="duration_template">%1$s:%2$s</string>
