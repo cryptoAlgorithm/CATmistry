@@ -1,15 +1,62 @@
 package com.catmistry.android
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_ph_game.*
+import kotlinx.android.synthetic.main.activity_ph_game.endGame
+import kotlinx.android.synthetic.main.activity_ph_game.progressBar
 
 class PhGameActivity : AppCompatActivity() {
     private var difficulty: Double? = null
     private var beakerPH: Int = 0
     private val subPhArr: ArrayList<Int> = ArrayList()
+    // Timer vars
+    private var continueTimer = false
+    private var timeLeft: Double? = null
+    private var currentTimerThread: Thread? = null
+
+    // Timer functions
+    private fun startTimer(totalTime: Double) {
+        if (timeLeft == null) timeLeft = totalTime
+
+        val runnable = Runnable {
+            while (continueTimer && !Thread.interrupted()) {
+                val newProg = ((timeLeft!! / totalTime) * 100.0).toInt()
+
+                runOnUiThread {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        progressBar.setProgress(newProg, true)
+                    }
+                    else progressBar.progress = newProg
+                }
+
+                if (timeLeft!! <= 0.0) {
+                    runOnUiThread {
+                        // Stuff that updates the UI
+                        // Android how I hate you
+                        checkAns()
+                    }
+
+                    timeLeft = null
+                    break
+                }
+
+                timeLeft = timeLeft!! - 50
+
+                try {
+                    Thread.sleep(50)
+                }
+                catch(e: Exception) {}
+            }
+
+            continueTimer = false
+        }
+        currentTimerThread = Thread(runnable)
+        currentTimerThread?.start()
+    }
 
     private fun clrSubChecks() {
         subOne.isChecked = false
@@ -56,6 +103,11 @@ class PhGameActivity : AppCompatActivity() {
     }
 
     private fun nextQn() {
+        // Stop timer
+        continueTimer = false
+        currentTimerThread?.interrupt()
+        timeLeft = null
+
         // Reset array
         subPhArr.clear() // Delete all elements
 
@@ -97,6 +149,25 @@ class PhGameActivity : AppCompatActivity() {
                 "ph_${subPhArr[3]}",
                 "drawable", packageName
         ))
+
+        // Start timer
+        continueTimer = true
+        startTimer((5.0 - intent.extras?.getDouble("difficulty")!!) * 5000)
+    }
+
+    private fun checkAns() {
+        // Check if ans is correct
+        val selectedPh = when {
+            subOne.isChecked -> subPhArr[0]
+            subTwo.isChecked -> subPhArr[1]
+            subThree.isChecked -> subPhArr[2]
+            subFour.isChecked -> subPhArr[3]
+            else -> 7 // Always wrong
+        }
+        if ((selectedPh < 7 && beakerPH > 7) || (selectedPh > 7 && beakerPH < 7))
+            Snackbar.make(submitPhAns, R.string.ph_correct, Snackbar.LENGTH_SHORT).show() // Correct
+        else Snackbar.make(submitPhAns, R.string.ph_wrong, Snackbar.LENGTH_SHORT).show()  // Wrong
+        nextQn()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,18 +191,7 @@ class PhGameActivity : AppCompatActivity() {
 
         // Submit button onclick listener
         submitPhAns.setOnClickListener {
-            // Check if ans is correct
-            val selectedPh = when {
-                subOne.isChecked -> subPhArr[0]
-                subTwo.isChecked -> subPhArr[1]
-                subThree.isChecked -> subPhArr[2]
-                subFour.isChecked -> subPhArr[3]
-                else -> 7 // Always wrong
-            }
-            if ((selectedPh < 7 && beakerPH > 7) || (selectedPh > 7 && beakerPH < 7))
-                Snackbar.make(it, R.string.ph_correct, Snackbar.LENGTH_SHORT).show() // Correct
-            else Snackbar.make(it, R.string.ph_wrong, Snackbar.LENGTH_SHORT).show()  // Wrong
-            nextQn()
+            checkAns()
         }
 
         // Substance check handlers

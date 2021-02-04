@@ -1,5 +1,6 @@
 package com.catmistry.android
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,10 +12,58 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_ph_game.*
 import kotlinx.android.synthetic.main.activity_ptable_game.*
+import kotlinx.android.synthetic.main.activity_ptable_game.endGame
+import kotlinx.android.synthetic.main.activity_ptable_game.progressBar
 
 class PTableGameActivity : AppCompatActivity() {
     val qnsArray: ArrayList<PTableGameArray?> = ArrayList()
+
+    // Timer vars
+    private var continueTimer = false
+    private var timeLeft: Double? = null
+    private var currentTimerThread: Thread? = null
+
+    // Timer functions
+    private fun startTimer(totalTime: Double) {
+        if (timeLeft == null) timeLeft = totalTime
+
+        val runnable = Runnable {
+            while (continueTimer && !Thread.interrupted()) {
+                val newProg = ((timeLeft!! / totalTime) * 100.0).toInt()
+
+                runOnUiThread {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        progressBar.setProgress(newProg, true)
+                    }
+                    else progressBar.progress = newProg
+                }
+
+                if (timeLeft!! <= 0.0) {
+                    runOnUiThread {
+                        // Stuff that updates the UI
+                        // Android how I hate you
+                        checkAns(100)
+                    }
+
+                    timeLeft = null
+                    break
+                }
+
+                timeLeft = timeLeft!! - 50
+
+                try {
+                    Thread.sleep(50)
+                }
+                catch(e: Exception) {}
+            }
+
+            continueTimer = false
+        }
+        currentTimerThread = Thread(runnable)
+        currentTimerThread?.start()
+    }
 
     private fun checkButtonState() {
         if (grpToggles.checkedButtonIds.size != 0) {
@@ -49,9 +98,18 @@ class PTableGameActivity : AppCompatActivity() {
         subGrpThree.isEnabled = true
         subGrpFour.isEnabled = true
         checkButtonState()
+
+        // Start timer
+        continueTimer = true
+        startTimer((5.0 - intent.extras?.getDouble("difficulty")!!) * 5000)
     }
 
     private fun checkAns(type: Int) {
+        // Pause timer
+        continueTimer = false
+        currentTimerThread?.interrupt()
+        timeLeft = null
+
         val qn = qnsArray[0]
 
         val fQnsRemaining = if (qnsArray.size == 1) getString(R.string.quiz_remaining_singular)
