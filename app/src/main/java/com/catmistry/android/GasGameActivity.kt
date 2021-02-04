@@ -1,5 +1,6 @@
 package com.catmistry.android
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,6 +25,7 @@ class GasGameActivity : AppCompatActivity() {
     private var currentTimerThread: Thread? = null
     private var reallyExit: Boolean = false
     private var totalTime: Double = 0.0
+    private var ansCorrect = 0
 
     private fun resumeTimer() {
         continueTimer = true // Resume timer
@@ -142,6 +144,8 @@ class GasGameActivity : AppCompatActivity() {
         val leftQns = if (questionsSeq.size - 1 == 1) getString(R.string.quiz_remaining_singular)
         else getString(R.string.quiz_remaining_plural, (questionsSeq.size-1).toString())
         Snackbar.make(submitGasAns, getString(R.string.game_correct, leftQns), Snackbar.LENGTH_LONG).show()
+
+        ansCorrect++
     }
 
     private fun checkAns() {
@@ -162,7 +166,9 @@ class GasGameActivity : AppCompatActivity() {
 
         if (questionsSeq.isEmpty()) {
             reallyExit = true
-            onBackPressed()
+            startActivity(
+                Intent(this, GameEndActivity::class.java)
+                    .putExtra("won", ansCorrect >= 5))
         }
         else initUiElem()
     }

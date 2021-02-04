@@ -2,6 +2,7 @@ package com.catmistry.android
 
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -26,7 +27,9 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_retrieve_game.*
 import kotlinx.android.synthetic.main.activity_retrieve_game.progressBar
+import kotlinx.android.synthetic.main.activity_start_game.*
 import kotlinx.android.synthetic.main.table_thin_row.view.*
+import java.lang.Math.abs
 
 class SeparationGameAdapter(
     private val data: ArrayList<String>,
@@ -332,11 +335,17 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
         // Check if the cup is empty or full
         if (waveProg <= 0) {
             Snackbar.make(sepMethods, "Won!", Snackbar.LENGTH_SHORT).show()
+            startActivity(
+                Intent(this, GameEndActivity::class.java)
+                .putExtra("won", true))
             stopGame()
             return
         }
         else if (waveProg >= 100) {
             Snackbar.make(sepMethods, "Lost!", Snackbar.LENGTH_SHORT).show()
+            startActivity(
+                Intent(this, GameEndActivity::class.java)
+                    .putExtra("won", false))
             stopGame()
             return
         }
@@ -357,7 +366,7 @@ class RetrieveGameActivity : AppCompatActivity(), RecyclerViewClickListener, Tab
 
     override fun rowClicked(itemID: Int) {
         sepSubstance.text = getString(
-            R.string.sep_substance_template, separationSubstances[subSeq[itemID]].split(
+            R.string.sep_substance_template, separationSubstances[subSeq[kotlin.math.abs(itemID)]].split(
                 " - "
             )[0]
         )

@@ -1,5 +1,6 @@
 package com.catmistry.android
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_ptable_game.progressBar
 
 class PTableGameActivity : AppCompatActivity() {
     val qnsArray: ArrayList<PTableGameArray?> = ArrayList()
+    private var ansCorrect = 0
 
     // Timer vars
     private var continueTimer = false
@@ -127,13 +129,17 @@ class PTableGameActivity : AppCompatActivity() {
 
         disableUI()
 
-        if (qn?.grp == selectedGrp && qn.type == type)
+        if (qn?.grp == selectedGrp && qn.type == type) {
+            ansCorrect++
             Snackbar.make(grpToggles, getString(R.string.game_correct, fQnsRemaining), Snackbar.LENGTH_SHORT).show()
+        }
         else Snackbar.make(grpToggles, getString(R.string.game_wrong, fQnsRemaining), Snackbar.LENGTH_SHORT).show()
 
         qnsArray.removeFirstOrNull() // Remove current question from questions array
         if (qnsArray.size == 0) {
-            Snackbar.make(grpToggles, "End", Snackbar.LENGTH_SHORT).show()
+            startActivity(
+                Intent(this, GameEndActivity::class.java)
+                    .putExtra("won", ansCorrect >= 3))
             return // Don't call updateQn
         }
 

@@ -1,5 +1,6 @@
 package com.catmistry.android
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,9 @@ class PhGameActivity : AppCompatActivity() {
     private var difficulty: Double? = null
     private var beakerPH: Int = 0
     private val subPhArr: ArrayList<Int> = ArrayList()
+    private var ansCorrect = 0
+    private var totalQns = 1
+    private var currentQn = 0
     // Timer vars
     private var continueTimer = false
     private var timeLeft: Double? = null
@@ -117,6 +121,14 @@ class PhGameActivity : AppCompatActivity() {
         subThree.isChecked = false
         subFour.isChecked = false
 
+        // Check if game should end
+        if (currentQn >= totalQns) {
+            startActivity(
+                Intent(this, GameEndActivity::class.java)
+                    .putExtra("won", ansCorrect >= totalQns / 2))
+            return
+        }
+
         // Generate a random beaker pH
         do { beakerPH = (1 until 15).random() }
         while (beakerPH == 7) // Ensure beaker pH is never 7
@@ -153,6 +165,8 @@ class PhGameActivity : AppCompatActivity() {
         // Start timer
         continueTimer = true
         startTimer((5.0 - intent.extras?.getDouble("difficulty")!!) * 5000)
+
+        currentQn++
     }
 
     private fun checkAns() {
@@ -164,14 +178,17 @@ class PhGameActivity : AppCompatActivity() {
             subFour.isChecked -> subPhArr[3]
             else -> 7 // Always wrong
         }
-        if ((selectedPh < 7 && beakerPH > 7) || (selectedPh > 7 && beakerPH < 7))
+        if ((selectedPh < 7 && beakerPH > 7) || (selectedPh > 7 && beakerPH < 7)) {
             Snackbar.make(submitPhAns, R.string.ph_correct, Snackbar.LENGTH_SHORT).show() // Correct
+            ansCorrect++
+        }
         else Snackbar.make(submitPhAns, R.string.ph_wrong, Snackbar.LENGTH_SHORT).show()  // Wrong
         nextQn()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         difficulty = intent.extras?.getDouble("difficulty")
+        totalQns = (difficulty?.times(6))?.toInt() ?: 10
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ph_game)

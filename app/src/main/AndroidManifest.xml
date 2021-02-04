@@ -34,6 +34,7 @@
             android:name=".SettingsActivity"
             android:label="@string/settings_header" />
         <activity
+            android:launchMode="singleTask"
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/SplashScreenTheme">

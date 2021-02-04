@@ -121,8 +121,9 @@ class SettingsActivity : AppCompatActivity() {
                                     val enteredPwd = container.findViewById<TextInputLayout>(R.id.devtoolsPwdField).editText?.text.toString()
                                     runOnUiThread { Toast.makeText(requireActivity(), R.string.calc_hash, Toast.LENGTH_LONG).show() }
                                     if (SCryptUtil.check(enteredPwd, requireActivity().getString(R.string.devtools_pwd_hash))) {
-                                        startActivity(Intent(requireActivity(), DevToolsActivity::class.java))
-                                        runOnUiThread { Toast.makeText(requireActivity(), R.string.devtools_pwd_yes, Toast.LENGTH_SHORT).show() }
+                                            runOnUiThread {
+                                                startActivity(Intent(requireActivity(), DevToolsActivity::class.java))
+                                                Toast.makeText(requireActivity(), R.string.devtools_pwd_yes, Toast.LENGTH_SHORT).show() }
                                     }
                                     else runOnUiThread { Toast.makeText(requireActivity(), R.string.devtools_pwd_no, Toast.LENGTH_SHORT).show() }
                                 }.start()
