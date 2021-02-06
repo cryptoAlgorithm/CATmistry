@@ -2,6 +2,7 @@
     <!-- Generic stuff -->
     <string name="data_loading">Loading data…</string>
     <string name="error_load">Failed to load data</string>
+    <string name="action_later">Later</string>
     <!-- Gas game -->
     <string name="submit_text">Submit</string>
 
@@ -114,6 +115,13 @@
     </string>
     <string name="share_app">Share CATmistry with others!</string>
     <string name="share_app_text">Check out CATmistry on the Galaxy Store now!</string>
+    <!-- Update section -->
+    <string name="update_ver">App Version and Update</string>
+    <string name="settings_app_ver">App version: %1$s (%2$d)</string>
+    <string name="no_app_update">Latest version installed</string>
+    <string name="app_update_new">Update to version %1$S available!</string>
+    <string name="update_summary">Updating ensures you get the best experience with latest features and bugfixes.</string>
+    <string name="update_action">Update</string>
 
     <!-- DevTools -->
     <string name="devtools_header">CATmistry DevTools</string>

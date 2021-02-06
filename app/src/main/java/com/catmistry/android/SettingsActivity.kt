@@ -1,21 +1,25 @@
 package com.catmistry.android
 
-import android.app.ProgressDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.preference.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import com.google.android.material.textview.MaterialTextView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 import com.lambdaworks.crypto.SCryptUtil
 import kotlinx.android.synthetic.main.password_dialog_layout.*
 import kotlinx.android.synthetic.main.settings_activity.*
@@ -150,6 +154,35 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(Intent.createChooser(sendIntent, getString(R.string.share_app)))
                 true
             }
+
+            findPreference<Preference>("appVer")?.summary = getString(R.string.settings_app_ver, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
+
+            findPreference<Preference>("updateApp")?.setOnPreferenceClickListener {
+                // Open CATmistry website in a Chrome custom tab
+                val url = "https://www.catmistry.cf/"
+                val builder = CustomTabsIntent.Builder()
+                val customTabsIntent = builder.build()
+                customTabsIntent.launchUrl(requireContext(), Uri.parse(url))
+                true
+            }
+
+            // Listen for changes to latest app version
+            val appVerListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.value != null) {
+                        findPreference<Preference>("updateApp")?.title =
+                                if (BuildConfig.VERSION_NAME == dataSnapshot.value.toString()) getString(R.string.no_app_update)
+                                else getString(R.string.app_update_new, dataSnapshot.value.toString())
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(requireContext(), "Error fetching latest app version",
+                            Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            Firebase.database.reference.child("latestVer").addValueEventListener(appVerListener)
         }
 
         private fun Fragment?.runOnUiThread(action: () -> Unit) {

@@ -1,15 +1,23 @@
 package com.catmistry.android
 
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
@@ -108,5 +116,46 @@ class MainActivity : AppCompatActivity() {
         (findViewById<View>(R.id.bottom_navigation) as BottomNavigationView).setOnNavigationItemSelectedListener { item ->
             handleTab(item.itemId)
         }
+
+        var dialogOpen = false
+
+        // Listen for changes to latest app version
+        val appVerListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                if (dataSnapshot.value != null) {
+                    if (BuildConfig.VERSION_NAME != dataSnapshot.value.toString()) {
+                        if (dialogOpen) return // Don't show another dialog if theres already one open
+
+                        MaterialAlertDialogBuilder(this@MainActivity)
+                                .setTitle(getString(R.string.app_update_new, dataSnapshot.value.toString()))
+                                .setMessage(getString(R.string.update_summary))
+                                .setNegativeButton(R.string.action_later) { _, _ ->
+                                    // Do nothing
+                                }
+                                .setPositiveButton(resources.getString(R.string.update_action)) { _, _ ->
+                                    // Respond to positive button press
+                                    // Open CATmistry website in a Chrome custom tab
+                                    val url = "https://www.catmistry.cf/"
+                                    val builder = CustomTabsIntent.Builder()
+                                    val customTabsIntent = builder.build()
+                                    customTabsIntent.launchUrl(this@MainActivity, Uri.parse(url))
+                                }
+                                .setOnDismissListener {
+                                    dialogOpen = false
+                                }
+                                .show()
+
+                        dialogOpen = true
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@MainActivity, "Error fetching latest app version",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        Firebase.database.reference.child("latestVer").addValueEventListener(appVerListener)
     }
 }
